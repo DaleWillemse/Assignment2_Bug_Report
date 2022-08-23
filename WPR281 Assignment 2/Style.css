@@ -1,0 +1,124 @@
+ #header{
+    display: grid;
+    grid-template-columns: 20% 80%; 
+    border-bottom: solid 1px black;
+    text-align: justify;
+ }
+ .head{
+    text-align: center;
+    border-bottom: solid 1px black;
+ }
+
+ .dashbody{
+    display: grid;
+    grid-template-columns: 10% 90%;   
+ }
+
+ .nav{
+    border-right: solid 1px black;
+    padding: 3px;
+    margin: 5px;
+ }
+ 
+ .dash{
+    border: solid 1px black;
+    padding: 3px;
+    margin: 5px;
+ }
+ .exit{
+    border-top: solid 1px black;
+ }
+
+ .ticket{
+    display: grid;
+    grid-template-columns: 20% 75% 5%;
+    border-bottom: 1px solid black;
+ }
+
+ .button{
+    display: flex;
+    height: 20px;
+    padding: 0;
+    background: #002f95;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+ }
+
+ .button2{
+    display: flex;
+    height: 80px;
+    width: 120px;
+    padding: 0;
+    background: #002f95;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+ }
+
+ .button_text{
+    display: inline-flex;
+    align-items: center;
+    padding: 0 18px;
+    color: #fff;
+    height: 100%;
+ }
+
+ .button:hover{
+    background: #002d81;
+ }
+
+ .button:active{
+    background: #001b6e;
+ }
+
+ .button2_text{
+    display: inline-flex;
+    align-items: center;
+    padding: 0 18px;
+    color: #fff;
+    height: 100%;
+ }
+
+ .button2:hover{
+    background: #002d81;
+ }
+
+ .button2:active{
+    background: #001b6e;
+ }
+
+ .container{
+    border: solid black 1px;
+ }
+
+ .ticketbody{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: auto;
+    margin: auto;
+    height: 80px;
+ }
+
+ .smallwidth{
+    width: 40%;
+    text-align: center;
+ }
+
+ .ticketbodydate{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    padding: auto;
+    margin: auto;
+    height: 70px;
+ }
