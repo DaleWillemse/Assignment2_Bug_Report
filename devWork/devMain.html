@@ -16,19 +16,34 @@
     <div class="gridContents">
 
       <nav class="gridContentsLeft">
-    <button type="button" class ="crud" id="cCrud" onclick="cCrudClick();">C</button><br>
-    <button type="button" class ="crud" id="rCrud" onclick="rCrudClick();">R</button><br>
-    <button type="button" class ="crud" id="uCrud" onclick="uCrudClick();">U</button><br>
-    <button type="button" class ="crud" id="dCrud" onclick="dCrudClick();">D</button><br>
+    <button type="button" class ="crud" id="cCrud" onclick="openProject()">C</button><br>
+    <button type="button" class ="crud" id="rCrud" onclick="rCrudClick()">R</button><br>
+    <button type="button" class ="crud" id="uCrud" onclick="uCrudClick()">U</button><br>
+    <button type="button" class ="crud" id="dCrud" onclick="dCrudClick()">D</button><br>
   </nav>
 
     <div class="gridContentsRight">
-    <p class = "projects">Project 1</p>
+    <p id = "p1" class = "projects"></p>
     <p class = "projects">Project 2</p>
     <p class = "projects">Project 3</p>
     <p class = "projects">Project 4</p><br>
     </div>
     </div>
 
+    <div class="createProject" id="createProject">
+      <form class="formProject">
+        <h1 id="projectHeading">New project</h1>
+
+        <label class="projectLabel" for="name">Name and Surname</label>
+        <input class="userInput" type="text" name="name" placeholder="Enter your name...">
+
+        <label class="projectLabel" for="project name">Name of project</label>
+        <input class="userInput" type="text" name="name of project" placeholder="Name of Project...">
+
+        <button class="projectButtonCreate" type="submit" name="createButton" onclick="firstProject()">Create Project</button>
+        <button class="projectButtonCancel" type="button" name="cancelButton" onclick="closeForm()">Cancel</button>
+
+      </form>
+    </div>
   </body>
 </html>
