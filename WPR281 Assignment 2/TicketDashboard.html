@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, intial-scale=1:0">
     <title>Ticket Dashboard</title>
-    <link rel="stylesheet" href="StyleTicket.css">
+    <link rel="stylesheet" href="Style.css">
 </head>
-
 <body>
     <div class="container">
         <div id="header">
             <div>
-                <img src="choc.bmp" alt="" width="140px" height="70px">
+                <img src="images\choc.bmp" alt="" width="140px" height="70px">
             </div>
             <div>
-                <h1>Ticket Dashboard</h1>
-            </div>
+                <h1>Ticket Dashboard</h1> 
+            </div>           
         </div>
         <div class="dashbody">
             <div class="nav">
-                <div>
-                    <p>Create(add)</p>
+                <div> 
+                   <p>Create(add)</p> 
+
                 </div>
                 <div>
                     <p>Read(Search)</p>
@@ -47,12 +46,12 @@
                     </div>
                     <div>
                         <p>Ticket info will display in this column.</p>
-                    </div>
+                    </div> 
                     <div>
                         <button type="button" class="button">
-                            <span class="button_text">Sort</span>
+                                <span class="button_text">Sort</span>
                         </button>
-                    </div>
+                    </div>                  
                 </div>
                 <div class="ticket">
                     <div>
@@ -64,11 +63,11 @@
                     </div>
                     <div>
                         <button type="button" class="button">
-                            <span class="button_text">Sort</span>
+                                <span class="button_text">Sort</span>
                         </button>
-                    </div>
+                    </div>                  
                 </div>
-                <div class="ticket">
+                <div class="ticket"> 
                     <div>
                         <p>Icon 3</p>
                     </div>
@@ -77,11 +76,11 @@
                     </div>
                     <div>
                         <button type="button" class="button">
-                            <span class="button_text">Sort</span>
+                                <span class="button_text">Sort</span>
                         </button>
-                    </div>
+                    </div> 
                 </div>
-                <div class="ticket">
+                <div class="ticket"> 
                     <div>
                         <p>Icon 4</p>
                     </div>
@@ -90,11 +89,11 @@
                     </div>
                     <div>
                         <button type="button" class="button">
-                            <span class="button_text">Sort</span>
+                                <span class="button_text">Sort</span>
                         </button>
-                    </div>
+                    </div> 
                 </div>
-                <div class="ticket">
+                <div class="ticket"> 
                     <div>
                         <p>Icon 5</p>
                     </div>
@@ -103,13 +102,44 @@
                     </div>
                     <div>
                         <button type="button" class="button">
-                            <span class="button_text">Sort</span>
+                                <span class="button_text">Sort</span>
                         </button>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>
     </div>
-</body>
+    <button class="open-button" onclick="openTicket()">Open new Ticket</button>
 
+<div class="form-popup" id="myTicket">
+  <form action="TicketDashboard.html" class="form-container" autocomplete="off">
+    <h1>Create new Ticket</h1>
+   
+        <label for="TicketTitle">Title of Issue: </label>
+        <input id="TicketTitle" name="TicketTitle" type="text" required>
+    
+        <label for="TicketAuthor">Author: </label>
+        <input type="text" name="TicketAuthor" id="TicketAuthor" required>
+    
+        <label for="TicketType">Type of Issue: </label>
+        <input id="TicketType" name="TicketType" type="text" required>
+    
+        <label for="TicketStatus">Status of Issue: </label>
+        <input type="text" name="TicketStatus" id="TicketStatus" required>
+    
+        <label for="TicketDateIssued">Date of Ticket Issued: </label>
+        <input type="date" name="TicketDateIssued" id="TicketDateIssued">
+    
+        <label for="TicketDateETACompleted">Estimated Date of Completion: </label>
+        <input type="date" name="TicketDateETACompleted" id="TicketDateETACompleted">
+    
+        <label for="TicketDateCompleted">Actual Date of Completion: </label>
+        <input type="date" name="TicketDateETACompleted" id="TicketDateETACompleted">
+    
+    <button type="submit" class="btn">Submit</button>
+    <button type="button" class="btn cancel" onclick="closeTicket()">Close & return to Ticket Dashboard</button>
+  </form>
+</div>
+<script src="script.js"></script>
+</body>
 </html>
