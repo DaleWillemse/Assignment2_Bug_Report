@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content="IE-edge">
@@ -7,139 +8,117 @@
     <title>Ticket Dashboard</title>
     <link rel="stylesheet" href="Style.css">
 </head>
-<body>
-    <div class="container">
-        <div id="header">
-            <div>
-                <img src="images\choc.bmp" alt="" width="140px" height="70px">
-            </div>
-            <div>
-                <h1>Ticket Dashboard</h1> 
-            </div>           
-        </div>
-        <div class="dashbody">
-            <div class="nav">
-                <div> 
-                   <p>Create(add)</p> 
 
+<body>
+    <div id="innerBody">
+        <div class="container">
+            <div id="header">
+                <div>
+                    <img src="images\choc.bmp" alt="" width="140px" height="70px">
                 </div>
                 <div>
-                    <p>Read(Search)</p>
-                    <p>SearchbarHere</p>
-                </div>
-                <div>
-                    <p>Update(Edit)</p>
-                </div>
-                <div>
-                    <p>Delete(Remove)</p>
-                </div>
-                <div class="exit">
-                    <button type="button" class="button2">
-                        <span class="button_text">Save & Exit to the projects dashboard</span>
-                    </button>
+                    <h1>Ticket Dashboard</h1>
                 </div>
             </div>
-            <div class="dash">
-                <div class="ticket">
+            <div class="dashbody">
+                <div class="nav">
                     <div>
-                        <p>Icon 1</p>
+                        <button onclick="openTicket()">Create</button>
+
                     </div>
                     <div>
-                        <p>Ticket info will display in this column.</p>
-                    </div> 
+                        <p>Read(Search)</p>
+                        <p>SearchbarHere</p>
+                    </div>
                     <div>
-                        <button type="button" class="button">
-                                <span class="button_text">Sort</span>
+                        <p>Update(Edit)</p>
+                    </div>
+                    <div>
+                        <p>Delete(Remove)</p>
+                    </div>
+                    <div class="exit">
+                        <button type="button" class="button2">
+                            <span class="button_text">Save & Exit to the projects dashboard</span>
                         </button>
-                    </div>                  
+                    </div>
                 </div>
-                <div class="ticket">
-                    <div>
-                        <p>Icon 2</p>
+                <div class="dash">
+                    <div class="ticket">
+                        <div>
+                            <p>Icon 1</p>
+                        </div>
+                        <div>
+                            <p>Ticket info will display in this column.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>Ticket info will display in this column.
-                        </p>
+                    <div class="ticket">
+                        <div>
+                            <p>Icon 2</p>
+                        </div>
+                        <div>
+                            <p>Ticket info will display in this column.
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <button type="button" class="button">
-                                <span class="button_text">Sort</span>
-                        </button>
-                    </div>                  
-                </div>
-                <div class="ticket"> 
-                    <div>
-                        <p>Icon 3</p>
+                    <div class="ticket">
+                        <div>
+                            <p>Icon 3</p>
+                        </div>
+                        <div>
+                            <p>Ticket info will display in this column.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>Ticket info will display in this column.</p>
+                    <div class="ticket">
+                        <div>
+                            <p>Icon 4</p>
+                        </div>
+                        <div>
+                            <p>Ticket info will display in this column.</p>
+                        </div>
                     </div>
-                    <div>
-                        <button type="button" class="button">
-                                <span class="button_text">Sort</span>
-                        </button>
-                    </div> 
-                </div>
-                <div class="ticket"> 
-                    <div>
-                        <p>Icon 4</p>
+                    <div class="ticket">
+                        <div>
+                            <p>Icon 5</p>
+                        </div>
+                        <div>
+                            <p>Ticket info will display in this column.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>Ticket info will display in this column.</p>
-                    </div>
-                    <div>
-                        <button type="button" class="button">
-                                <span class="button_text">Sort</span>
-                        </button>
-                    </div> 
-                </div>
-                <div class="ticket"> 
-                    <div>
-                        <p>Icon 5</p>
-                    </div>
-                    <div>
-                        <p>Ticket info will display in this column.</p>
-                    </div>
-                    <div>
-                        <button type="button" class="button">
-                                <span class="button_text">Sort</span>
-                        </button>
-                    </div> 
                 </div>
             </div>
         </div>
     </div>
-    <button class="open-button" onclick="openTicket()">Open new Ticket</button>
+    
+    <div class="form-popup" id="myTicket">
+        <form action="TicketDashboard.html" class="form-container" autocomplete="off">
+            <h1>Create new Ticket</h1>
 
-<div class="form-popup" id="myTicket">
-  <form action="TicketDashboard.html" class="form-container" autocomplete="off">
-    <h1>Create new Ticket</h1>
-   
-        <label for="TicketTitle">Title of Issue: </label>
-        <input id="TicketTitle" name="TicketTitle" type="text" required>
-    
-        <label for="TicketAuthor">Author: </label>
-        <input type="text" name="TicketAuthor" id="TicketAuthor" required>
-    
-        <label for="TicketType">Type of Issue: </label>
-        <input id="TicketType" name="TicketType" type="text" required>
-    
-        <label for="TicketStatus">Status of Issue: </label>
-        <input type="text" name="TicketStatus" id="TicketStatus" required>
-    
-        <label for="TicketDateIssued">Date of Ticket Issued: </label>
-        <input type="date" name="TicketDateIssued" id="TicketDateIssued">
-    
-        <label for="TicketDateETACompleted">Estimated Date of Completion: </label>
-        <input type="date" name="TicketDateETACompleted" id="TicketDateETACompleted">
-    
-        <label for="TicketDateCompleted">Actual Date of Completion: </label>
-        <input type="date" name="TicketDateETACompleted" id="TicketDateETACompleted">
-    
-    <button type="submit" class="btn">Submit</button>
-    <button type="button" class="btn cancel" onclick="closeTicket()">Close & return to Ticket Dashboard</button>
-  </form>
-</div>
-<script src="script.js"></script>
+            <label for="TicketTitle">Title of Issue: </label>
+            <input id="TicketTitle" name="TicketTitle" type="text" required>
+
+            <label for="TicketAuthor">Author: </label>
+            <input type="text" name="TicketAuthor" id="TicketAuthor" required>
+
+            <label for="TicketType">Type of Issue: </label>
+            <input id="TicketType" name="TicketType" type="text" required>
+
+            <label for="TicketStatus">Status of Issue: </label>
+            <input type="text" name="TicketStatus" id="TicketStatus" required>
+
+            <label for="TicketDateIssued">Date of Ticket Issued: </label>
+            <input type="date" name="TicketDateIssued" id="TicketDateIssued">
+
+            <label for="TicketDateETACompleted">Estimated Date of Completion: </label>
+            <input type="date" name="TicketDateETACompleted" id="TicketDateETACompleted">
+
+            <label for="TicketDateCompleted">Actual Date of Completion: </label>
+            <input type="date" name="TicketDateETACompleted" id="TicketDateETACompleted">
+
+            <button type="submit" class="btn">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeTicket()">Cancel</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>

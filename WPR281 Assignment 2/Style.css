@@ -1,56 +1,43 @@
- #header{
+ #header {
     display: grid;
-    grid-template-columns: 20% 80%; 
+    grid-template-columns: 20% 80%;
     border-bottom: solid 1px black;
     text-align: justify;
  }
- .head{
+
+ .head {
     text-align: center;
     border-bottom: solid 1px black;
  }
 
- .dashbody{
+ .dashbody {
     display: grid;
-    grid-template-columns: 10% 90%;   
+    grid-template-columns: 10% 90%;
  }
 
- .nav{
+ .nav {
     border-right: solid 1px black;
     padding: 3px;
     margin: 5px;
  }
- 
- .dash{
+
+ .dash {
     border: solid 1px black;
     padding: 3px;
     margin: 5px;
  }
- .exit{
+
+ .exit {
     border-top: solid 1px black;
  }
 
- .ticket{
+ .ticket {
     display: grid;
     grid-template-columns: 20% 75% 5%;
     border-bottom: 1px solid black;
  }
 
- .button{
-    display: flex;
-    height: 20px;
-    padding: 0;
-    background: #04AA6D;
-    border: none;
-    outline: none;
-    border-radius: 3px;
-    overflow: hidden;
-    font-family: sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
- }
-
- .button2{
+ .button2 {
     display: flex;
     height: 80px;
     width: 120px;
@@ -66,23 +53,23 @@
     cursor: pointer;
  }
 
- .button_text{
+ .button_text {
     display: inline-flex;
     align-items: center;
-    padding: 0 18px;
+    padding: 0 15px;
     color: #fff;
     height: 100%;
  }
 
- .button:hover{
+ .button:hover {
     background: #016943;
  }
 
- .button:active{
+ .button:active {
     background: #025134;
  }
 
- .button2_text{
+ .button2_text {
     display: inline-flex;
     align-items: center;
     padding: 0 18px;
@@ -90,19 +77,15 @@
     height: 100%;
  }
 
- .button2:hover{
-   background: #016943;
+ .button2:hover {
+    background: #016943;
  }
 
- .button2:active{
+ .button2:active {
     background: #025134;
  }
 
- .container{
-    border: solid black 1px;
- }
-
- .ticketbody{
+ .ticketbody {
     display: grid;
     grid-template-columns: 50% 50%;
     padding: auto;
@@ -110,12 +93,12 @@
     height: 80px;
  }
 
- .smallwidth{
+ .smallwidth {
     width: 40%;
     text-align: center;
  }
 
- .ticketbodydate{
+ .ticketbodydate {
     display: grid;
     grid-template-columns: 33% 33% 33%;
     padding: auto;
@@ -123,70 +106,61 @@
     height: 70px;
  }
 
- .open-button {
-   background-color: #04AA6D;
-   color: white;
-   padding: 16px 20px;
-   border: none;
-   cursor: pointer;
-   opacity: 0.8;
-   position: fixed;
-   bottom: 23px;
-   right: 28px;
-   width: 280px;
- }
- 
  /* The popup form - hidden by default */
+
  .form-popup {
-   display: none;
-   position: fixed;
-   bottom: 0;
-   right: 25px;
-   border: 3px solid #f1f1f1;
-   z-index: 9;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    border: 5px solid black;
  }
- 
+
  /* Add styles to the form container */
  .form-container {
-   max-width: 450px;
-   max-height: 850px;
-   padding: 10px;
-   background-color: white;
+    width: 450px;
+    padding: 10px;
+    background-color: white;
  }
- 
+
  /* Full-width input fields */
- .form-container input[type=text], .form-container input[type=password], .form-container input[type=date] {
-   width: 95%;
-   padding: 10px;
-   margin: 5px 0 18px 0;
-   border: none;
-   background: #f1f1f1;
+ .form-container input[type=text],
+ .form-container input[type=password],
+ .form-container input[type=date] {
+    width: 95%;
+    padding: 11px;
+    border: none;
+    background: #f1f1f1;
  }
- 
+
  /* When the inputs get focus, do something */
- .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-   background-color: #ddd;
-   outline: none;
+ .form-container input[type=text]:focus,
+ .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
  }
- 
+
  /* Set a style for the submit/login button */
  .form-container .btn {
-   background-color: #04AA6D;
-   color: white;
-   padding: 16px 20px;
-   border: none;
-   cursor: pointer;
-   width: 100%;
-   margin-bottom:10px;
-   opacity: 0.8;
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+    opacity: 0.8;
  }
- 
+
  /* Add a red background color to the cancel button */
  .form-container .cancel {
-   background-color: red;
+    background-color: red;
  }
- 
+
  /* Add some hover effects to buttons */
- .form-container .btn:hover, .open-button:hover {
-   opacity: 4;
+ .form-container .btn:hover,
+ .open-button:hover {
+    opacity: 4;
  }

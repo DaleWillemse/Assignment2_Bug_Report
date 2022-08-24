@@ -1,8 +1,10 @@
 function openTicket() {
-    document.getElementById("myTicket").style.display = "block";
-  }
-  
-  function closeTicket() {
-    document.getElementById("myTicket").style.display = "none";
-  }
-  localStorage.setItem('TitleAuthor',getElementById(TicketTitle));
+  document.getElementById("innerBody").style.opacity = "0.5"
+  document.getElementById("myTicket").style.display = "flex"  
+}
+
+function closeTicket() {
+  document.getElementById("myTicket").style.display = "none";
+  document.getElementById("innerBody").style.opacity = "1"
+}
+localStorage.setItem('TitleAuthor', getElementById(TicketTitle));
