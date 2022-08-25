@@ -14,6 +14,13 @@ function clearStorage() {
   location.reload();
 }
 
+// Getting current date.
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+var yyyy = today.getFullYear();
+today = yyyy + '-' + mm + '-' + dd;
+
 //Adding elements and using local storage below:
 const TicketForm = document.getElementById("TicketForm");
 const TicketContainer = document.querySelector(".TicketContainer");
@@ -22,7 +29,7 @@ const inputAuthor = TicketForm["TicketAuthor"];
 const inputDescription = TicketForm["TicketDescription"];
 const inputType = TicketForm["TicketType"];
 const inputStatus = TicketForm["TicketStatus"];
-const inputDateIssued = TicketForm["TicketDateIssued"];
+const dateIssued = String(today);
 const inputDateETA = TicketForm["TicketDateETACompleted"];
 const inputDateComp = TicketForm["TicketDateCompleted"];
 
@@ -45,6 +52,7 @@ const addTicket = (TicketTitle, TicketAuthor, TicketDescription, TicketType, Tic
   return { TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted, TicketNumber };
 };
 
+
 const CreateTicketElement = ({ TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted }) => {
 
   //create the elements
@@ -58,52 +66,48 @@ const CreateTicketElement = ({ TicketTitle, TicketAuthor, TicketDescription, Tic
   const tTicketDateIssued = document.createElement('p');
   const tTicketDateETACompleted = document.createElement('p');
   const tTicketDateCompleted = document.createElement('p');
-  const Line = document.createElement('hr')
 
   // Ticket button to open ticket elements
   const tbTicketButton = document.createElement('button');
   tbTicketButton.classList.add('ticketButton');
 
+
   const tbTicket = document.createElement('div');
   tbTicket.classList.add('Ticket');
 
   const tbTicketNumber = document.createElement('div');
-  const pTicketNumber = document.createElement('p');
-  
+
   const tbTicketHeading = document.createElement('div');
-  const pTicketHeading = document.createElement('p');
-  pTicketHeading.innerText = TicketTitle;
+  tbTicketHeading.innerHTML = TicketTitle;
 
   const tbAssingedTo = document.createElement('div');
-  const pAssingedTo = document.createElement('p');
 
   const tbDueDate = document.createElement('div');
-  const pDueDate = document.createElement('p');
 
-  tbTicketButton.appendChild(tbTicket);
+  const deleteBtn = document.createElement('button');
+  deleteBtn.classList.add('deleteBtn');
+  deleteBtn.innerHTML = "<img src='images/trash_can.png' alt='trash' width='20' height='20'>";
+
   tbTicket.appendChild(tbTicketNumber);
-  tbTicketNumber.appendChild(pTicketNumber);
   tbTicket.appendChild(tbTicketHeading);
-  tbTicketHeading.appendChild(pTicketHeading);
   tbTicket.appendChild(tbAssingedTo);
-  tbAssingedTo.appendChild(pAssingedTo);
   tbTicket.appendChild(tbDueDate);
-  tbDueDate.appendChild(pDueDate);
-
+  tbTicketButton.appendChild(tbTicket);
 
   //Fill the content
   tTicketTitle.innerText = "Title: " + TicketTitle;
   tTicketAuthor.innerText = "Author: " + TicketAuthor;
   tTicketDescription.innerText = "Description: " + TicketDescription;
   tTicketType.innerText = "Type: " + TicketType;
-  tTicketStatus.innerText = "Status: " + TicketStatus;
+  tTicketStatus.innerText = "Priority: " + TicketStatus;
   tTicketDateIssued.innerText = "Date Issued: " + TicketDateIssued;
   tTicketDateETACompleted.innerText = "Estimated Date of Completion: " + TicketDateETACompleted;
-  tTicketDateCompleted.innerText = "Date of Completion " + TicketDateCompleted;
+  tTicketDateCompleted.innerText = "Date of Completion: " + TicketDateCompleted;
 
   //Add to the Domain
   //The order it is appended is the order it will be displayed in.
-  tTicketDiv.append(Line, tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateIssued, tTicketDateETACompleted, tTicketDateCompleted, Line);
+  tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateIssued, tTicketDateETACompleted, tTicketDateCompleted);
+  TicketContainer.appendChild(deleteBtn);
   TicketContainer.appendChild(tbTicketButton);
   TicketContainer.appendChild(tTicketDiv);
 }
@@ -119,7 +123,7 @@ TicketForm.onsubmit = (e) => {
     inputDescription.value,
     inputType.value,
     inputStatus.value,
-    inputDateIssued.value,
+    dateIssued,
     inputDateETA.value,
     inputDateComp.value,
   )
@@ -132,12 +136,12 @@ TicketForm.onsubmit = (e) => {
   inputDescription.value = "";
   inputType.value = "";
   inputStatus.value = "";
-  inputDateIssued.value = "";
+  dateIssued.value = "";
   inputDateETA.value = "";
   inputDateComp.value = "";
 };
 
-// Click on the ticket to open the ticket.
+// Click on the ticket button to open the ticket.
 document.querySelectorAll(".ticketButton").forEach(button => {
   button.addEventListener("click", () => {
     const ticket = button.nextElementSibling;
