@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width, intial-scale=1:0">
     <title>Ticket Dashboard</title>
     <link rel="stylesheet" href="Style.css">
 </head>
@@ -42,76 +41,11 @@
                         </button>
                     </div>
                 </div>
-                <div class="dash">
+                <div class="dash" id="ticketDash">
                     <div id="dashHeader">
                         <p>Ticket Number</p>
                         <p>Ticket Details</p>
                         <p>Assigned to</p>
-                    </div>
-                    <div class="ticket">
-                        <div>
-                            <p id="ticketNumber">1</p>
-                        </div>
-                        <div>
-                            <p id="ticketDetails">Cannot access this part of the database.</p>
-                        </div>
-                        <div>
-                            <p id="assignedTo">
-                                Dale Willemse
-                            </p>
-                        </div>
-                    </div>
-                    <div class="ticket">
-                        <div>
-                            <p id="ticketNumber">2</p>
-                        </div>
-                        <div>
-                            <p id="ticketDetails">Cannot access this part of the database.</p>
-                        </div>
-                        <div>
-                            <p id="assignedTo">
-
-                            </p>
-                        </div>
-                    </div>
-                    <div class="ticket">
-                        <div>
-                            <p id="ticketNumber">3</p>
-                        </div>
-                        <div>
-                            <p id="ticketDetails">Cannot access this part of the database.</p>
-                        </div>
-                        <div>
-                            <p id="assignedTo">
-
-                            </p>
-                        </div>
-                    </div>
-                    <div class="ticket">
-                        <div>
-                            <p id="ticketNumber">4</p>
-                        </div>
-                        <div>
-                            <p id="ticketDetails">Cannot access this part of the database.</p>
-                        </div>
-                        <div>
-                            <p id="assignedTo">
-
-                            </p>
-                        </div>
-                    </div>
-                    <div class="ticket">
-                        <div>
-                            <p id="ticketNumber">5</p>
-                        </div>
-                        <div>
-                            <p id="ticketDetails">Cannot access this part of the database.</p>
-                        </div>
-                        <div>
-                            <p id="assignedTo">
-
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -119,14 +53,14 @@
     </div>
 
     <div class="form-popup" id="myTicket">
-        <form action="TicketDashboard.html" class="form-container" autocomplete="off">
+        <form action="TicketDashboard.html" id="ticketForm" class="form-container" autocomplete="off">
             <h1>Create new Ticket</h1>
 
             <label for="TicketTitle">Assigned To</label>
-            <input class="TicketTitle" name="TicketTitle" type="text" required>
+            <input class="TicketTitle" name="TicketTitle" type="text" id="assignedInput" required>
 
             <label for="TicketAuthor">Ticket Details</label>
-            <input type="text" name="TicketAuthor" class="TicketTitle" required>
+            <input type="text" name="TicketAuthor" class="TicketTitle" id="detailsInput" required>
             <div id="UrgencyButtons">
                 <p>Ticket Urgency</p>
                 <input type="radio" id="high" name="urgency" value=" High">
@@ -138,11 +72,11 @@
             </div>
 
             <label for="TicketDateCompleted" id="DueDateTitle">Due Date </label>
-            <input type="date" name="TicketDateCompleted" class="TicketTitle">
+            <input type="date" name="TicketDateCompleted" class="TicketTitle" id="dueDateInput">
             <label for="TicketDateEstimated" id="DueDateTitle">Estimated Completion Date </label>
-            <input type="date" name="TicketDateEstimated" class="TicketTitle">
+            <input type="date" name="TicketDateEstimated" class="TicketTitle" id="estimatedDateInput">
 
-            <button type="submit" class="btn">Submit</button>
+            <button type="button" class="btn" onclick="submitTicket(),closeTicket()">Submit</button>
             <button type="button" class="btn cancel" onclick="closeTicket()">Cancel</button>
         </form>
     </div>
