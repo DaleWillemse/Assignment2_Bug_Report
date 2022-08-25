@@ -4,48 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, intial-scale=1:0">
     <title>Ticket Dashboard</title>
     <link rel="stylesheet" href="Style.css">
 </head>
 
 <body>
-    <div id="innerBody">
-        <div class="container">
-            <div id="header">
+    <div class="container">
+        <div id="header">
+            <div>
+                <img src="choc.bmp" alt="" width="140px" height="70px">
+            </div>
+            <div>
+                <h1>
+                    <span class="button2_text"> Ticket Dashboard</span>
+                </h1>
+            </div>
+        </div>
+        <div class="dashbody">
+            <div class="nav">
                 <div>
-                    <img src="images\choc.bmp" alt="" width="140px" height="70px">
+                    <button type="button" class="button2" onclick="openTicket()">
+                        <span class="button2_text"> Create new Ticket</span></button>
                 </div>
                 <div>
-                    <h1>Ticket Dashboard</h1>
+                    <button type="button" class="button2">
+                        <span class="button2_text">Search Ticket</span></button>
+                </div>
+                <div>
+                    <button type="button" class="button2">
+                        <span class="button2_text">Edit existing Ticket</span></button>
+                </div>
+                <div>
+                    <button type="button" class="button2">
+                        <span class="button2_text">Delete Ticket</span></button>
+                </div>
+                <div>
+                    <button type="button" class="button2" onclick="clearStorage()">
+                        <span class="button2_text">Delete All Tickets</span></button>
+                </div>
+                <div class="exit">
+                    <button type="button" class="button2">
+                        <span class="button2_text">Save & Exit to the projects dashboard</span>
+                    </button>
                 </div>
             </div>
-            <div class="dashbody">
-                <div class="nav">
-                    <div>
-                        <button onclick="openTicket()">Create</button>
-
-                    </div>
-                    <div>
-                        <p>Read(Search)</p>
-                        <p>SearchbarHere</p>
-                    </div>
-                    <div>
-                        <p>Update(Edit)</p>
-                    </div>
-                    <div>
-                        <p>Delete(Remove)</p>
-                    </div>
-                    <div class="exit">
-                        <button type="button" class="button2">
-                            <span class="button_text">Save & Exit to the projects dashboard</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="dash" id="ticketDash">
-                    <div id="dashHeader">
-                        <p>Ticket Number</p>
-                        <p>Ticket Details</p>
-                        <p>Assigned to</p>
+            <div class="dash">
+                <div>
+                    <div class="ticket">
+                        Tickets will display here
                     </div>
                 </div>
             </div>
@@ -53,31 +60,35 @@
     </div>
 
     <div class="form-popup" id="myTicket">
-        <form action="TicketDashboard.html" id="ticketForm" class="form-container" autocomplete="off">
+        <form action="TicketDashboard.html" class="form-container" autocomplete="off" id="TicketForm">
             <h1>Create new Ticket</h1>
 
-            <label for="TicketTitle">Assigned To</label>
-            <input class="TicketTitle" name="TicketTitle" type="text" id="assignedInput" required>
+            <label for="TicketTitle">Title of Issue: </label>
+            <input type="text" name="TicketTitle" placeholder="Title" required>
 
-            <label for="TicketAuthor">Ticket Details</label>
-            <input type="text" name="TicketAuthor" class="TicketTitle" id="detailsInput" required>
-            <div id="UrgencyButtons">
-                <p>Ticket Urgency</p>
-                <input type="radio" id="high" name="urgency" value=" High">
-                <label for="high">High</label>
-                <input type="radio" id="medium" name="urgency" value="Medium">
-                <label for="medium">Medium</label>
-                <input type="radio" id="low" name="urgency" value="low">
-                <label for="low">Low</label>
-            </div>
+            <label for="Description">Description of Issue</label>
+            <input type="text" name="TicketDescription">
 
-            <label for="TicketDateCompleted" id="DueDateTitle">Due Date </label>
-            <input type="date" name="TicketDateCompleted" class="TicketTitle" id="dueDateInput">
-            <label for="TicketDateEstimated" id="DueDateTitle">Estimated Completion Date </label>
-            <input type="date" name="TicketDateEstimated" class="TicketTitle" id="estimatedDateInput">
+            <label for="TicketAuthor">Author: </label>
+            <input type="text" name="TicketAuthor" placeholder="John Doe" required>
 
-            <button type="button" class="btn" onclick="submitTicket(),closeTicket()">Submit</button>
-            <button type="button" class="btn cancel" onclick="closeTicket()">Cancel</button>
+            <label for="TicketType">Type of Issue: </label>
+            <input type="text" name="TicketType" placeholder="Bug/Formatting" required>
+
+            <label for="TicketStatus">Status of Issue: </label>
+            <input type="text" name="TicketStatus" placeholder="Low/ Medium/ High" required>
+
+            <label for="TicketDateIssued">Date of Ticket Issued: </label>
+            <input type="date" name="TicketDateIssued">
+
+            <label for="TicketDateETACompleted">Estimated Date of Completion: </label>
+            <input type="date" name="TicketDateETACompleted">
+
+            <label for="TicketDateCompleted">Actual Date of Completion: </label>
+            <input type="date" name="TicketDateCompleted">
+
+            <button class="btn" type="submit">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeTicket()">Close & return to Ticket Dashboard</button>
         </form>
     </div>
     <script src="script.js"></script>
