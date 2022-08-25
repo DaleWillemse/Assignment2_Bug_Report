@@ -70,7 +70,7 @@
                         </div>
                         <div>
                             <p id="assignedTo">
-                                
+
                             </p>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                         </div>
                         <div>
                             <p id="assignedTo">
-                                
+
                             </p>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         </div>
                         <div>
                             <p id="assignedTo">
-                                
+
                             </p>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                         </div>
                         <div>
                             <p id="assignedTo">
-                                
+
                             </p>
                         </div>
                     </div>
@@ -122,26 +122,25 @@
         <form action="TicketDashboard.html" class="form-container" autocomplete="off">
             <h1>Create new Ticket</h1>
 
-            <label for="TicketTitle">Title of Issue: </label>
-            <input id="TicketTitle" name="TicketTitle" type="text" required>
+            <label for="TicketTitle">Assigned To</label>
+            <input class="TicketTitle" name="TicketTitle" type="text" required>
 
-            <label for="TicketAuthor">Author: </label>
-            <input type="text" name="TicketAuthor" id="TicketAuthor" required>
+            <label for="TicketAuthor">Ticket Details</label>
+            <input type="text" name="TicketAuthor" class="TicketTitle" required>
+            <div id="UrgencyButtons">
+                <p>Ticket Urgency</p>
+                <input type="radio" id="high" name="urgency" value=" High">
+                <label for="high">High</label>
+                <input type="radio" id="medium" name="urgency" value="Medium">
+                <label for="medium">Medium</label>
+                <input type="radio" id="low" name="urgency" value="low">
+                <label for="low">Low</label>
+            </div>
 
-            <label for="TicketType">Type of Issue: </label>
-            <input id="TicketType" name="TicketType" type="text" required>
-
-            <label for="TicketStatus">Status of Issue: </label>
-            <input type="text" name="TicketStatus" id="TicketStatus" required>
-
-            <label for="TicketDateIssued">Date of Ticket Issued: </label>
-            <input type="date" name="TicketDateIssued" id="TicketDateIssued">
-
-            <label for="TicketDateETACompleted">Estimated Date of Completion: </label>
-            <input type="date" name="TicketDateETACompleted" id="TicketDateETACompleted">
-
-            <label for="TicketDateCompleted">Actual Date of Completion: </label>
-            <input type="date" name="TicketDateCompleted" id="TicketDateCompleted">
+            <label for="TicketDateCompleted" id="DueDateTitle">Due Date </label>
+            <input type="date" name="TicketDateCompleted" class="TicketTitle">
+            <label for="TicketDateEstimated" id="DueDateTitle">Estimated Completion Date </label>
+            <input type="date" name="TicketDateEstimated" class="TicketTitle">
 
             <button type="submit" class="btn">Submit</button>
             <button type="button" class="btn cancel" onclick="closeTicket()">Cancel</button>
