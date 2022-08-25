@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="innerBody">
         <div id="header">
             <div>
                 <img src="images/choc.bmp" alt="" width="140px" height="70px">
@@ -51,12 +51,19 @@
             </div>
             <div class="dash">
                 <div>
-                    <div class="ticket">
-                        Tickets will display here
+                    <div class="Ticket">
+                        <p>Number</p>
+                        <p>Title</p>
+                        <p>Assigned To</p>
+                        <p>Due Date</p>
+                    </div>
+                    <div class = "TicketContainer">
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <div class="form-popup" id="myTicket">
@@ -87,8 +94,9 @@
             <label for="TicketDateCompleted">Actual Date of Completion: </label>
             <input type="date" name="TicketDateCompleted">
 
-            <button class="btn" type="submit">Submit</button>
-            <button type="button" class="btn cancel" onclick="closeTicket()">Close & return to Ticket Dashboard</button>
+            <button class="btn" type="submit" onclick="closeTicket()">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeTicket()">Close & return to Ticket
+                Dashboard</button>
         </form>
     </div>
     <script src="script.js"></script>
