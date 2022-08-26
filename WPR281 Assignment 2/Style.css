@@ -50,6 +50,12 @@ hr {
    text-align: left;
 }
 
+.ticketTitle {
+   font-size: 20px;
+   font-weight: bold;
+   margin: 2px 0 2px 5px;
+}
+
 
 .ticket {
    max-height: 0;
@@ -62,9 +68,25 @@ hr {
 .deleteBtn {
    position: absolute;
    left: 95%;
+   padding: 0;
    margin-top: 12px;
-   cursor: pointer;
+   border: none;
+   border-radius: 4px;
 }
+
+.deleteBtn :hover {
+   cursor: pointer;
+   background-color: #238c65;
+}
+
+#trashCan {
+   height: 25px;
+   width: 25px;
+   margin-bottom: -3px;
+   padding: 3px;
+   border-radius: 3px;
+}
+
 
 .ticketButton {
    width: 100%;
