@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, intial-scale=1:0">
+    <title>Ticket Dashboard</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+    <div class="container" id="innerBody">
+        <div id="header">
+            <div id="backArrow">
+                <img href="#" src="images/Back_Arrow.svg.png" alt="" width="140px" height="70px">
+            </div>
+            <div>
+                <h1>
+                    <span id="PageHeader"> Ticket Dashboard</span>
+                </h1>
+            </div>
+        </div>
+        <div class="dashbody">
+            <div class="nav">
+                <div>
+                    <button type="button" class="button2" onclick="openTicket()">
+                        <span class="button2_text"> Create new Ticket</span></button>
+                </div>
+                <div>
+                    <button type="button" class="button2">
+                        <span class="button2_text">Search Ticket</span></button>
+                </div>
+                <div>
+                    <button type="button" class="button2">
+                        <span class="button2_text">Edit existing Ticket</span></button>
+                </div>
+                <div>
+                    <button type="button" class="button2" onclick="clearStorage()">
+                        <span class="button2_text">Delete All Tickets</span></button>
+                </div>
+            </div>
+            <div class="dash">
+                <div>
+                    <div class="Ticket">
+                        <p class="ticketTitle">Number</p>
+                        <p class="ticketTitle">Title</p>
+                        <p class="ticketTitle">Assigned To</p>
+                        <p class="ticketTitle">Due Date</p>
+                    </div>
+                    <div class="TicketContainer">
+                        <!-- tickets appear here -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-popup" id="myTicket">
+        <form action="TicketDashboard.html" class="form-container" autocomplete="off" id="TicketForm">
+            <h1>Create new Ticket</h1>
+
+            <label for="TicketTitle">Ticket Name </label>
+            <input type="text" name="TicketTitle" placeholder="Ticket Name" required>
+
+            <label for="Description">Description</label>
+            <input type="text" name="TicketDescription">
+
+            <label for="TicketAuthor">Author: </label>
+            <input type="text" name="TicketAuthor" placeholder="John Doe">
+
+            <label for="TicketType">Type of Issue: </label>
+            <input type="text" name="TicketType" placeholder="Bug/Formatting">
+
+            <label for="TicketStatus">Priority: </label>
+            <input type="text" name="TicketStatus" placeholder="Low/ Medium/ High">
+
+            <label for="TicketDateETACompleted">Estimated Date of Completion: </label>
+            <input type="date" name="TicketDateETACompleted">
+
+            <label for="TicketDateCompleted">Actual Date of Completion: </label>
+            <input type="date" name="TicketDateCompleted">
+
+            <button class="btn" type="submit" onclick="closeTicket()">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeTicket()">Cancel</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

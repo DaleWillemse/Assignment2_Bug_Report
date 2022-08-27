@@ -14,6 +14,11 @@ function clearStorage() {
   location.reload();
 }
 
+function deleteTicket() {
+  localStorage.removeItem();
+}
+
+
 // Getting current date.
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
@@ -35,9 +40,8 @@ const inputDateComp = TicketForm["TicketDateCompleted"];
 
 const Tickets = JSON.parse(localStorage.getItem("Tickets")) || [];
 
-const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted) => {
+const addTicket = (TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted) => {
   Tickets.push({
-    TicketNumber,
     TicketTitle,
     TicketAuthor,
     TicketDescription,
@@ -50,16 +54,15 @@ const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, T
   });
   localStorage.setItem("Tickets", JSON.stringify(Tickets));
 
-  return { TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted, TicketNumber };
+  return { TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted, TicketNumber };
 };
 
 
-const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted }) => {
+const CreateTicketElement = ({ TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted }) => {
 
   //create the elements
   const tTicketDiv = document.createElement('div');
   tTicketDiv.classList.add('ticket');
-  tTicketDiv.id = TicketNumber;
   const tTicketTitle = document.createElement('h3');
   const tTicketAuthor = document.createElement('p');
   const tTicketDescription = document.createElement('p');
@@ -72,30 +75,33 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   // Ticket button to open ticket elements
   const tbTicketButton = document.createElement('button');
   tbTicketButton.classList.add('ticketButton');
-  tbTicketButton.id = TicketNumber;
-
 
   const tbTicket = document.createElement('div');
   tbTicket.classList.add('Ticket');
 
   const tbTicketNumber = document.createElement('div');
-  tbTicketNumber.innerHTML = TicketNumber;
 
-  const tbTicketTitle = document.createElement('div');
-  tbTicketTitle.innerHTML = TicketTitle;
+  const tbTicketHeading = document.createElement('div');
+  tbTicketHeading.innerHTML = TicketTitle;
 
   const tbAssingedTo = document.createElement('div');
 
   const tbDueDate = document.createElement('div');
 
   const deleteBtn = document.createElement('button');
-  deleteBtn.id = TicketNumber;
+  deleteBtn.id = tbTicketNumber;
   deleteBtn.addEventListener('click', deleteTicket);
   deleteBtn.classList.add('deleteBtn');
-  deleteBtn.innerHTML = "<img src='images/trash_can.png' id = 'trashCan' alt='trash' width='20' height='20'>";
+  deleteBtn.innerHTML = "<img src='images/trash_can.png' alt='trash' width='20' height='20'>";
+
+  const editBtn = document.createElement('button');
+  editBtn.id = tbTicketNumber;
+  editBtn.addEventListener('click',onEdit)
+  editBtn.classList.add('editBtn');
+  editBtn.innerHTML = "<img src='images/edit.png' alt='edit' width='20' height='20'>";
 
   tbTicket.appendChild(tbTicketNumber);
-  tbTicket.appendChild(tbTicketTitle);
+  tbTicket.appendChild(tbTicketHeading);
   tbTicket.appendChild(tbAssingedTo);
   tbTicket.appendChild(tbDueDate);
   tbTicketButton.appendChild(tbTicket);
@@ -112,7 +118,7 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
 
   //Add to the Domain
   //The order it is appended is the order it will be displayed in.
-  tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateIssued, tTicketDateETACompleted, tTicketDateCompleted);
+  tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateIssued, tTicketDateETACompleted, tTicketDateCompleted, editBtn);
   TicketContainer.appendChild(deleteBtn);
   TicketContainer.appendChild(tbTicketButton);
   TicketContainer.appendChild(tTicketDiv);
@@ -124,7 +130,6 @@ TicketForm.onsubmit = (e) => {
   e.preventDefault();
   location.reload();
   const newTicket = addTicket(
-    Tickets.length + 1,
     inputTitle.value,
     inputAuthor.value,
     inputDescription.value,
@@ -164,4 +169,15 @@ document.querySelectorAll(".ticketButton").forEach(button => {
 });
 
 
-
+// edit function:
+function onEdit() {
+  selectedDiv = TicketContainer.parentElement;
+  document.getElementById("TicketTitle").value = selectedDiv.innerHTML;
+  document.getElementById("TicketAuthor").value = selectedDiv.innerHTML;
+  document.getElementById("TicketDescription").value = selectedDiv.innerHTML;
+  document.getElementById("TicketType").value = selectedDiv.innerHTML;
+  document.getElementById("TicketStatus").value = selectedDiv.innerHTML;
+  document.getElementById("TicketDateETACompleted").value = selectedDiv.innerHTML;
+  document.getElementById("TicketDateCompleted").value = selectedDiv.innerHTML;
+  
+}
