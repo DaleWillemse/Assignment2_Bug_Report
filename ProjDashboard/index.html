@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <style>
+        .list-group{
+            border: none;
+        }
+        .btn{
+            width: 7cm;
+
+        }
+        .header{
+            text-align: center;
+            background-color: blanchedalmond;
+            vertical-align: middle;
+        }
+        h1{
+            display: inline-block;
+            margin-left: 5vw;
+            font-size: 60px;
+            vertical-align: middle;
+        }
+        .navbar{
+            display: inline-block;
+        }
+        button>img{
+            height: 1cm;
+            float: left;
+        }
+        h6{
+            color: black;
+            vertical-align: middle;
+            font-size: 22px;
+            padding-top: 3%;
+        }
+        fieldset>li{
+            list-style: none;
+            padding: 1em;
+        }
+        .modal-body,.modal-footer{
+            margin: auto;
+        }
+        #input1, #input2{
+            border: none;
+            border-bottom: solid 2px black;
+            width: 10cm;
+            background-color: #ccdfe8;
+            border-radius: 5px;
+        }
+        #input1:focus, #input2:hover{
+            background-color: aliceblue;
+        }
+        .modal-footer>button{
+            width: auto;
+        }
+        #aside{
+            display: inline-block;
+            width: auto;
+            padding: 0;
+        }
+        #projects{
+            width: 100%;
+            padding: 1em;
+            border: 2px solid #ccdfe8;
+            background-color: #ccdfe8;
+        }
+        .content{
+            display: grid;
+            grid-template-columns: min-content auto;
+        }
+        .row{
+            background-color: antiquewhite;
+            border-radius: 10px;
+            padding: 1em;
+        }
+        .row>.col{
+            border: solid 2px;
+        }
+        .container>.row>div{
+            padding: 5px
+        }
+        </style>
+</head>
+<body>
+    <section id="wrapper">
+        <section class="header">
+            <img src="img.png" alt="_bug_tracker_logo">
+            <h1>Project Dashboard</h1>
+        </section>
+
+        <section class="content">
+            <section class="container" id="aside">
+            <nav class="navbar">
+                <ul class="list-group">
+                    <li class="list-group-item"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProject"><img src="plus.png" alt="+_img"><h6>New Project</h6></button></li>
+                    <li class="list-group-item"><button type="button" class="btn btn-warning"><img src="search.png" alt="mag_img"><h6>Search Project</h6></button></li>
+                    <li class="list-group-item"><button type="button" class="btn btn-danger"><img src="close.png" alt="x_img"><h6>Remove Project</h6></button></li>
+                </ul>
+            </nav>            
+            </section>
+            
+
+            <div class="container" id="projects">
+                <div class="row g-3 row-cols-3">                    
+                </div>
+            </div>
+        </section>
+        
+
+        <div class="modal fade" id="addProject" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add a New Project</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="projectForm">
+                        <fieldset>
+                            <li><input type="text" name="projName" id="input1" placeholder="Project Name..."></li>
+                            <li><textarea name="projDesc" id="input2" cols="20" rows="5" placeholder="Description..."></textarea></li>
+                        </fieldset>
+                    </form>                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" value="Reload Page" onClick="window.location.reload(true)" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" form="projectForm" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+</body>
+<script src="temp.js"></script>
+</html>
