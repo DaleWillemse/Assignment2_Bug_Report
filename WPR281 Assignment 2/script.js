@@ -210,6 +210,8 @@ function searchTicket() {
       }
       else {
         document.getElementById(Tickets[i].TicketNumber).style.display = "none";
+        returnBtn.style.display = "block";
+
       }
     }
     document.getElementById("search").value = "";
