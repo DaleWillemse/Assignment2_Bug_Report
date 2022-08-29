@@ -41,8 +41,8 @@
                     <div class="Ticket">
                         <p class="ticketTitle">Priority</p>
                         <p class="ticketTitle">Title</p>
-                        <p class="ticketTitle">Assigned To</p>
-                        <p class="ticketTitle">Due Date</p>
+                        <p class="ticketTitle">Author</p>
+                        <p class="ticketTitle">Date Created</p>
                     </div>
                     <div class="TicketContainer">
                         <!-- tickets appear here -->
@@ -65,13 +65,17 @@
             <input type="text" name="TicketDescription">
 
             <label for="TicketAuthor">Author: </label>
-            <input type="text" name="TicketAuthor" placeholder="John Doe" >
+            <input type="text" name="TicketAuthor" placeholder="John Doe">
 
             <label for="TicketType">Type of Issue: </label>
-            <input type="text" name="TicketType" placeholder="Bug/Formatting" >
+            <input type="text" name="TicketType" placeholder="Bug/Formatting">
 
             <label for="TicketStatus">Priority: </label>
-            <input type="text" name="TicketStatus" placeholder="Low/ Medium/ High" >
+            <select name="TicketStatus">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
 
             <label for="TicketDateETACompleted">Estimated Date of Completion: </label>
             <input type="date" name="TicketDateETACompleted">
@@ -85,4 +89,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

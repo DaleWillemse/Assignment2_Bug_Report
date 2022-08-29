@@ -10,8 +10,11 @@ function closeTicket() {
 }
 
 function clearStorage() {
-  localStorage.clear();
-  location.reload();
+  //confirm that the user wants to clear the storage
+  if (confirm("Are you sure you want to clear the storage?")) { 
+    localStorage.clear();
+    location.reload();
+  }
 }
 
 // Getting current date.
@@ -67,7 +70,6 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   const tTicketDescription = document.createElement('p');
   const tTicketType = document.createElement('p');
   const tTicketStatus = document.createElement('p');
-  const tTicketDateIssued = document.createElement('p');
   const tTicketDateETACompleted = document.createElement('p');
   const tTicketDateCompleted = document.createElement('p');
 
@@ -79,18 +81,33 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   tbTicket.classList.add('Ticket');
   
   const tbPriority = document.createElement('div');
-  tbPriority.innerHTML = TicketStatus
+  tbPriority.innerHTML = TicketStatus;
+  tbPriority.classList.add('btnTitles');
 
   const tbTicketHeading = document.createElement('div');
   tbTicketHeading.innerHTML = TicketTitle;
+  tbTicketHeading.classList.add('btnTitles');
   
-  const tbAssingedTo = document.createElement('div');
+  const tbAuthor = document.createElement('div');
+  tbAuthor.innerHTML = TicketAuthor;
+  tbAuthor.classList.add('btnTitles');
 
-  const tbDueDate = document.createElement('div');
+  const tbDateCreated = document.createElement('div');
+  tbDateCreated.innerHTML = TicketDateIssued;
+  tbDateCreated.classList.add('btnTitles');
 
   const deleteBtn = document.createElement('button');
   deleteBtn.addEventListener('click', deleteTicket);
   deleteBtn.classList.add('deleteBtn');
+  if (TicketStatus == "High") {
+    tbTicketButton.id = "highPriority";
+  }
+  else if (TicketStatus == "Medium") {
+    tbTicketButton.id = "mediumPriority";
+  }
+  else if (TicketStatus == "Low") {
+    tbTicketButton.id = "lowPriority";
+  }
   deleteBtn.innerHTML = "<img src='images/trash_can.png' class = 'trashCan' alt='trash' width='20' height='20'>";
   
   // const editBtn = document.createElement('button');
@@ -100,8 +117,8 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
 
   tbTicket.appendChild(tbPriority);
   tbTicket.appendChild(tbTicketHeading);
-  tbTicket.appendChild(tbAssingedTo);
-  tbTicket.appendChild(tbDueDate);
+  tbTicket.appendChild(tbAuthor);
+  tbTicket.appendChild(tbDateCreated);
   tbTicketButton.appendChild(tbTicket);
   
   //Fill the content
@@ -110,13 +127,12 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   tTicketDescription.innerText = "Description: " + TicketDescription;
   tTicketType.innerText = "Type: " + TicketType;
   tTicketStatus.innerText = "Priority: " + TicketStatus;
-  tTicketDateIssued.innerText = "Date Issued: " + TicketDateIssued;
   tTicketDateETACompleted.innerText = "Estimated Date of Completion: " + TicketDateETACompleted;
   tTicketDateCompleted.innerText = "Date of Completion: " + TicketDateCompleted;
   
   //Add to the Domain
   //The order it is appended is the order it will be displayed in.
-  tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateIssued, tTicketDateETACompleted, tTicketDateCompleted); //, editBtn);
+  tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateETACompleted, tTicketDateCompleted); //, editBtn);
   TicketElement.appendChild(deleteBtn);
   TicketElement.appendChild(tbTicketButton);
   TicketElement.appendChild(tTicketDiv);
