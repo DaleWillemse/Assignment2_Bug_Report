@@ -66,6 +66,9 @@ hr {
    cursor: pointer;
 }
 
+.trashCan{
+   pointer-events: none;
+}
 .ticketButton {
    width: 100%;
    padding: 0;

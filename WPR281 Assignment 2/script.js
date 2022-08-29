@@ -74,16 +74,16 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   // Ticket button to open ticket elements
   const tbTicketButton = document.createElement('button');
   tbTicketButton.classList.add('ticketButton');
-
+  
   const tbTicket = document.createElement('div');
   tbTicket.classList.add('Ticket');
-
+  
   const tbPriority = document.createElement('div');
   tbPriority.innerHTML = TicketStatus
 
   const tbTicketHeading = document.createElement('div');
   tbTicketHeading.innerHTML = TicketTitle;
-
+  
   const tbAssingedTo = document.createElement('div');
 
   const tbDueDate = document.createElement('div');
@@ -91,8 +91,8 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   const deleteBtn = document.createElement('button');
   deleteBtn.addEventListener('click', deleteTicket);
   deleteBtn.classList.add('deleteBtn');
-  deleteBtn.innerHTML = "<img src='images/trash_can.png' alt='trash' width='20' height='20'>";
-
+  deleteBtn.innerHTML = "<img src='images/trash_can.png' class = 'trashCan' alt='trash' width='20' height='20'>";
+  
   // const editBtn = document.createElement('button');
   // editBtn.addEventListener('click',onEdit)
   // editBtn.classList.add('editBtn');
@@ -168,10 +168,16 @@ document.querySelectorAll(".ticketButton").forEach(button => {
   });
 });
 
-// Delete the ticket with the delete button and remove it from the local storage.
+// Delete function.
 function deleteTicket(e) {
-  const TicketElement = e.target.parentElement.getAttribute("id");
-  alert(TicketElement);
+  if (confirm("Are you sure you want to delete this ticket?")) {
+    const ticket = e.target.parentElement;
+    const ticketNumber = ticket.id;
+    const index = Tickets.findIndex(Ticket => Ticket.TicketNumber == ticketNumber);
+    Tickets.splice(index, 1);
+    localStorage.setItem("Tickets", JSON.stringify(Tickets));
+    ticket.remove();
+  }
 }
 
 // edit function:
