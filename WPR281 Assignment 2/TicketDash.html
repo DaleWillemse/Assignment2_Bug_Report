@@ -27,9 +27,10 @@
                     <button type="button" class="button2" onclick="openTicket()">
                         <span class="button2_text"> Create new Ticket</span></button>
                 </div>
-                <div class="search-wrapper">
-                    <label for="search" class="button2_text">Search Ticket</label>
-                    <input type="search" id="search" ticket-search>
+                <div>
+                    <button type="button" class="button2" onclick="searchTicket()">
+                        <span class="button2_text">Search Ticket</span></button>
+                        <input type="text" id="search" placeholder="Ticket Title...">
                 </div>
                 <div>
                     <button type="button" class="button2" onclick="clearStorage()">
@@ -40,6 +41,7 @@
                 <div>
                     <div class="Ticket">
                         <p class="ticketTitle">Priority</p>
+                        <img src="images/return.png" id="returnBtn" alt="" width="25px" height="25px">
                         <p class="ticketTitle">Title</p>
                         <p class="ticketTitle">Author</p>
                         <p class="ticketTitle">Date Created</p>

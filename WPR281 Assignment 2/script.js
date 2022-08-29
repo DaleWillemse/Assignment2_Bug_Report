@@ -76,6 +76,15 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   // Ticket button to open ticket elements
   const tbTicketButton = document.createElement('button');
   tbTicketButton.classList.add('ticketButton');
+  if (TicketStatus == "High") {
+    tbTicketButton.id = "highPriority";
+  }
+  else if (TicketStatus == "Medium") {
+    tbTicketButton.id = "mediumPriority";
+  }
+  else if (TicketStatus == "Low") {
+    tbTicketButton.id = "lowPriority";
+  }
   
   const tbTicket = document.createElement('div');
   tbTicket.classList.add('Ticket');
@@ -99,15 +108,6 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   const deleteBtn = document.createElement('button');
   deleteBtn.addEventListener('click', deleteTicket);
   deleteBtn.classList.add('deleteBtn');
-  if (TicketStatus == "High") {
-    tbTicketButton.id = "highPriority";
-  }
-  else if (TicketStatus == "Medium") {
-    tbTicketButton.id = "mediumPriority";
-  }
-  else if (TicketStatus == "Low") {
-    tbTicketButton.id = "lowPriority";
-  }
   deleteBtn.innerHTML = "<img src='images/trash_can.png' class = 'trashCan' alt='trash' width='20' height='20'>";
   
   // const editBtn = document.createElement('button');
@@ -120,6 +120,7 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   tbTicket.appendChild(tbAuthor);
   tbTicket.appendChild(tbDateCreated);
   tbTicketButton.appendChild(tbTicket);
+
   
   //Fill the content
   tTicketTitle.innerText = "Title: " + TicketTitle;
@@ -195,6 +196,32 @@ function deleteTicket(e) {
     ticket.remove();
   }
 }
+
+// Search function.
+function searchTicket() {
+  const search = document.getElementById("search").value;
+  const returnBtn = document.getElementById("returnBtn");
+  if (search != "") {
+    for (let i = 0; i < Tickets.length; i++) {
+      //if the ticket title matches the search, display it.
+      if (Tickets[i].TicketTitle.toLowerCase() == search.toLowerCase()) {
+        document.getElementById(Tickets[i].TicketNumber).style.display = "block";
+        returnBtn.style.display = "block";
+      }
+      else {
+        document.getElementById(Tickets[i].TicketNumber).style.display = "none";
+      }
+    }
+    document.getElementById("search").value = "";
+    //return button to reload the page
+    returnBtn.addEventListener("click", () => {
+      location.reload();
+    }
+    );
+  }
+}
+
+
 
 // edit function:
 //function onEdit() {
