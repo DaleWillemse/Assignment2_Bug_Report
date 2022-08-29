@@ -50,6 +50,7 @@ hr {
    text-align: left;
 }
 
+
 .ticket {
    max-height: 0;
    overflow: hidden;
@@ -102,7 +103,9 @@ hr {
    background: #016943;
 }
 
+
 /* The popup form - hidden by default */
+
 .form-popup {
    display: none;
    position: absolute;
@@ -159,4 +162,18 @@ hr {
 .form-container .btn:hover,
 .open-button:hover {
    opacity: 4;
+}
+
+.hide{
+   display: none;
+}
+
+.search-wrapper{
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+
+}
+.search-wrapper > input{
+   font-size: 0.8rem;
 }

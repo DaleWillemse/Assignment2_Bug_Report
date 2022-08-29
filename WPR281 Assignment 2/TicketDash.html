@@ -27,13 +27,9 @@
                     <button type="button" class="button2" onclick="openTicket()">
                         <span class="button2_text"> Create new Ticket</span></button>
                 </div>
-                <div>
-                    <button type="button" class="button2">
-                        <span class="button2_text">Search Ticket</span></button>
-                </div>
-                <div>
-                    <button type="button" class="button2">
-                        <span class="button2_text">Edit existing Ticket</span></button>
+                <div class="search-wrapper">
+                    <label for="search" class="button2_text">Search Ticket</label>
+                    <input type="search" id="search" ticket-search>
                 </div>
                 <div>
                     <button type="button" class="button2" onclick="clearStorage()">
@@ -43,7 +39,7 @@
             <div class="dash">
                 <div>
                     <div class="Ticket">
-                        <p class="ticketTitle">Number</p>
+                        <p class="ticketTitle">Priority</p>
                         <p class="ticketTitle">Title</p>
                         <p class="ticketTitle">Assigned To</p>
                         <p class="ticketTitle">Due Date</p>
@@ -69,13 +65,13 @@
             <input type="text" name="TicketDescription">
 
             <label for="TicketAuthor">Author: </label>
-            <input type="text" name="TicketAuthor" placeholder="John Doe">
+            <input type="text" name="TicketAuthor" placeholder="John Doe" >
 
             <label for="TicketType">Type of Issue: </label>
-            <input type="text" name="TicketType" placeholder="Bug/Formatting">
+            <input type="text" name="TicketType" placeholder="Bug/Formatting" >
 
             <label for="TicketStatus">Priority: </label>
-            <input type="text" name="TicketStatus" placeholder="Low/ Medium/ High">
+            <input type="text" name="TicketStatus" placeholder="Low/ Medium/ High" >
 
             <label for="TicketDateETACompleted">Estimated Date of Completion: </label>
             <input type="date" name="TicketDateETACompleted">
@@ -89,5 +85,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
