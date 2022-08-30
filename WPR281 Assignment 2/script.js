@@ -225,6 +225,8 @@ function onEdit(e) {
   inputDescription.value = selectedTicket.TicketDescription;
   inputType.value = selectedTicket.TicketType;
   dateIssued.value = selectedTicket.TicketDateIssued;
+  inputDateETA.value = selectedTicket.TicketDateETACompleted;
+  inputStatus.value = selectedTicket.TicketStatus;
   openTicket();
   //remove the old ticket from the array and local storage.
   Tickets.splice(index, 1);
