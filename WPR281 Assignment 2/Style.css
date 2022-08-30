@@ -46,7 +46,7 @@ hr {
 
 .Ticket {
    display: grid;
-   grid-template-columns: 15% 35% 30% 20%;
+   grid-template-columns: 15% 30% 15% 15% 10%;
    padding: 20px 0;
    text-align: left;
 }
@@ -78,6 +78,10 @@ hr {
 
 #lowPriority {
    background-color: yellow;
+}
+
+#completedPriority{
+   background-color: lightgreen;
 }
 
 .deleteBtn {

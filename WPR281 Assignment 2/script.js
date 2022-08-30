@@ -21,7 +21,7 @@ var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
-today = yyyy + '-' + mm + '-' + dd;
+var today = yyyy + '-' + mm + '-' + dd;
 
 //Adding elements and using local storage below:
 const TicketForm = document.getElementById("TicketForm");
@@ -33,11 +33,10 @@ const inputType = TicketForm["TicketType"];
 const inputStatus = TicketForm["TicketStatus"];
 const dateIssued = String(today);
 const inputDateETA = TicketForm["TicketDateETACompleted"];
-const inputDateComp = TicketForm["TicketDateCompleted"];
 
 const Tickets = JSON.parse(localStorage.getItem("Tickets")) || [];
 
-const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted) => {
+const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted) => {
   Tickets.push({
     TicketNumber,
     TicketTitle,
@@ -46,16 +45,15 @@ const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, T
     TicketType,
     TicketStatus,
     TicketDateIssued,
-    TicketDateETACompleted,
-    TicketDateCompleted
+    TicketDateETACompleted
 
   });
   localStorage.setItem("Tickets", JSON.stringify(Tickets));
 
-  return { TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted, TicketNumber };
+  return { TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted };
 };
 
-const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted }) => {
+const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted }) => {
 
   //create the elements
   const TicketElement = document.createElement("div");
@@ -69,7 +67,6 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   const tTicketType = document.createElement('p');
   const tTicketStatus = document.createElement('p');
   const tTicketDateETACompleted = document.createElement('p');
-  const tTicketDateCompleted = document.createElement('p');
 
   // Ticket button to open ticket elements
   const tbTicketButton = document.createElement('button');
@@ -82,6 +79,9 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   }
   else if (TicketStatus == "Low") {
     tbTicketButton.id = "lowPriority";
+  }
+  else if (TicketStatus == "Completed") {
+    tbTicketButton.id = "completedPriority";
   }
 
   const tbTicket = document.createElement('div');
@@ -103,6 +103,10 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   tbDateCreated.innerHTML = TicketDateIssued;
   tbDateCreated.classList.add('btnTitles');
 
+  const tbDateCompleted = document.createElement('div');
+  tbDateCompleted.classList.add('btnTitles');
+  tbDateCompleted.id = `${TicketNumber}`;
+
   const deleteBtn = document.createElement('button');
   deleteBtn.addEventListener('click', deleteTicket);
   deleteBtn.classList.add('deleteBtn');
@@ -116,12 +120,13 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   const tickMark = document.createElement('button');
   tickMark.addEventListener('click', onComplete)
   tickMark.classList.add('tickMark');
-  tickMark.innerHTML = "<img src='images/tick.png' alt='tick' class = 'noPointer' id = 'clicked' width='20' height='20'>";
+  tickMark.innerHTML = "<img src='images/tick.png' alt='tick' class = 'noPointer' width='20' height='20'>";
 
   tbTicket.appendChild(tbPriority);
   tbTicket.appendChild(tbTicketHeading);
   tbTicket.appendChild(tbAuthor);
   tbTicket.appendChild(tbDateCreated);
+  tbTicket.appendChild(tbDateCompleted);
   tbTicketButton.appendChild(tbTicket);
 
   //Fill the content
@@ -131,11 +136,10 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   tTicketType.innerText = "Type: " + TicketType;
   tTicketStatus.innerText = "Priority: " + TicketStatus;
   tTicketDateETACompleted.innerText = "Estimated Date of Completion: " + TicketDateETACompleted;
-  tTicketDateCompleted.innerText = "Date of Completion: " + TicketDateCompleted;
 
   //Add to the Domain
   //The order it is appended is the order it will be displayed in.
-  tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateETACompleted, tTicketDateCompleted, editBtn);
+  tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateETACompleted, editBtn);
   TicketElement.appendChild(deleteBtn);
   TicketElement.appendChild(tickMark);
   TicketElement.appendChild(tbTicketButton);
@@ -157,7 +161,6 @@ TicketForm.onsubmit = (e) => {
     inputStatus.value,
     dateIssued,
     inputDateETA.value,
-    inputDateComp.value,
   )
 
   CreateTicketElement(newTicket);
@@ -170,7 +173,6 @@ TicketForm.onsubmit = (e) => {
   inputStatus.value = "";
   dateIssued.value = "";
   inputDateETA.value = "";
-  inputDateComp.value = "";
 };
 
 // Click on the ticket button to open the ticket.
@@ -200,11 +202,15 @@ function deleteTicket(e) {
   }
 }
 
-// Ticket completion function.
+// Ticket completed function.
 function onComplete(e) {
   if (confirm("Confirm this ticket is completed?")) {
-    const btn = e.target;
-    btn.style.backgroundColor = "#02b638";
+    const ticket = e.target.parentElement;
+    const ticketNumber = ticket.id;
+    const index = Tickets.findIndex(Ticket => Ticket.TicketNumber == ticketNumber);
+    Tickets[index].TicketStatus = "Completed";
+    localStorage.setItem("Tickets", JSON.stringify(Tickets));
+    // 
   }
 }
 
@@ -218,9 +224,7 @@ function onEdit(e) {
   inputAuthor.value = selectedTicket.TicketAuthor;
   inputDescription.value = selectedTicket.TicketDescription;
   inputType.value = selectedTicket.TicketType;
-  inputStatus.value = selectedTicket.TicketStatus;
   dateIssued.value = selectedTicket.TicketDateIssued;
-  inputDateETA.value = selectedTicket.TicketDateETACompleted;
   openTicket();
   //remove the old ticket from the array and local storage.
   Tickets.splice(index, 1);
