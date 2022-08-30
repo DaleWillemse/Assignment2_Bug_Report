@@ -231,8 +231,7 @@ function onEdit(e) {
   inputDateETA.value = selectedTicket.TicketDateETACompleted;
   inputStatus.value = "Low";
   openTicket();
-  //remove the old ticket from the array and local storage.
-  Tickets.splice(index, 1);
+  Tickets.splice(index, 1); // remove old ticket from local storage
   // all tickets numbers shift down by 1.
   Tickets.forEach(Ticket => {
     if (Ticket.TicketNumber > selectedTicket.TicketNumber) {
