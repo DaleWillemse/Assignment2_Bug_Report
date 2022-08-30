@@ -233,23 +233,27 @@ function onEdit(e) {
   openTicket();
   //remove the old ticket from the array and local storage.
   Tickets.splice(index, 1);
+  // all tickets numbers shift down by 1.
+  Tickets.forEach(Ticket => {
+    if (Ticket.TicketNumber > selectedTicket.TicketNumber) {
+      Ticket.TicketNumber -= 1;
+    }
+  });
+
+  const newTicket = addTicket(
+    ticketNumber = Tickets.length + 1,
+    inputTitle.value,
+    inputAuthor.value,
+    inputDescription.value,
+    inputType.value,
+    inputStatus.value,
+    dateIssued.value,
+    inputDateETA.value,
+    dateCompleted = "Not Completed"
+  )
+  Tickets.push(newTicket);
   localStorage.setItem("Tickets", JSON.stringify(Tickets));
-  if (confirm("Confirm you want to edit this ticket?")) {
-    const newTicket = addTicket(
-      ticketNumber = Tickets.length + 1,
-      inputTitle.value,
-      inputAuthor.value,
-      inputDescription.value,
-      inputType.value,
-      inputStatus.value,
-      dateIssued.value,
-      inputDateETA.value,
-      dateCompleted = "Not Completed"
-    )
-    Tickets.push(newTicket);
-    localStorage.setItem("Tickets", JSON.stringify(Tickets));
-    location.reload();
-  }
+  location.reload();
 }
 
 // Search function.
