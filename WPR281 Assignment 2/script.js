@@ -47,8 +47,7 @@ const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, T
     TicketStatus,
     TicketDateIssued,
     TicketDateETACompleted,
-    TicketDateCompleted,
-    TicketCompleted
+    TicketDateCompleted
 
   });
   localStorage.setItem("Tickets", JSON.stringify(Tickets));
@@ -200,6 +199,7 @@ function deleteTicket(e) {
     ticket.remove();
   }
 }
+
 // Ticket completion function.
 function onComplete(e) {
   if (confirm("Confirm this ticket is completed?")) {
