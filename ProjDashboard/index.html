@@ -89,6 +89,35 @@
         .container>.row>div{
             padding: 5px
         }
+        #searchInput{
+
+        }
+        #searchInput, #deleteInput{
+            display: inline;
+            width: 74%;
+            height: 3.5rem;
+            border: solid 5px purple;
+            border-radius: 5px;
+        }
+        #searchBtn, #removeBtn{
+            display: inline-block;
+            width: 26%;
+            height: 3.5rem;
+            border: solid 2px blue;
+            background-color: cyan;
+            border-radius: 5px;
+        }
+        #searchBtn:hover, #removeBtn:hover{
+            border: solid 2px cyan;
+            background-color: blue;
+            color: bisque;
+        }
+        #searchLi{            
+            display: none;
+        }
+        #searchLi2{            
+            display: none;
+        }
         </style>
 </head>
 <body>
@@ -103,15 +132,17 @@
             <nav class="navbar">
                 <ul class="list-group">
                     <li class="list-group-item"><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProject"><img src="plus.png" alt="+_img"><h6>New Project</h6></button></li>
-                    <li class="list-group-item"><button type="button" class="btn btn-warning"><img src="search.png" alt="mag_img"><h6>Search Project</h6></button></li>
-                    <li class="list-group-item"><button type="button" class="btn btn-danger"><img src="close.png" alt="x_img"><h6>Remove Project</h6></button></li>
+                    <li class="list-group-item"><button type="button" id="btnSearch" class="btn btn-warning"><img src="search.png" alt="mag_img"><h6>Search Project</h6></button></li>
+                    <li class="list-group-item"><button id="btnRemove" type="button" class="btn btn-danger"><img src="close.png" alt="x_img"><h6>Remove Project</h6></button></li>
+                    <li class="list-group-item" id="searchLi"><input type="search" name="search" id="searchInput" placeholder="Type Project Name..."><button onclick="searchProjectsFunction()" id="searchBtn">Search</button></li>
+                    <li class="list-group-item" id="searchLi2"><input type="search" name="search2" id="deleteInput" placeholder="Type Project Name..."><button onclick="deleteProject()" id="removeBtn">Remove</button></li>
                 </ul>
             </nav>
             </section>
 
 
             <div class="container" id="projects">
-                <div class="row g-3 row-cols-3">
+                <div class="row g-3 row-cols-3" id="tbClear">
                 </div>
             </div>
         </section>
