@@ -13,6 +13,9 @@ const addProject = (name, desc) => {
     return name, desc;
 };
 
+
+
+
 const createProjectElement = ({name, desc}) => {
     const projectDiv = document.createElement("div");
     projectDiv.classList.add("col");
@@ -66,9 +69,102 @@ projectForm.onsubmit = e => {
     descInput.value = "";
 };
 
-//my function for deleting (still working on it)
+const targetDiv = document.getElementById("searchLi");
+const targetDiv2 = document.getElementById("searchLi2");
+const btnFind = document.getElementById("btnSearch");
+const btnRemove = document.getElementById("btnRemove");
 
-function deleteFunction(){
-  document.getElementByClassName("removeBtn");
-  localStorage.remove();
+btnFind.onclick = function () {
+    if (targetDiv.style.display !== "block") {
+        targetDiv.style.display = "block";
+    } else {
+        targetDiv.style.display = "none";
+    }
+};
+btnRemove.onclick = function () {
+    if (targetDiv2.style.display !== "block") {
+        targetDiv2.style.display = "block";
+    } else {
+        targetDiv2.style.display = "none";
+    }
+};
+
+function searchProjectsFunction() { 
+    const searchValue = document.getElementById("searchInput");
+    let index;
+    isFound = false;
+    for (let i = 0; i < projects.length; i++) {
+        const element = projects[i];
+        
+        if (String(element.name) == String(searchValue.value)) {
+            index = projects.indexOf(element);  
+            isFound = true;
+            break;
+        }
+    }
+    if (isFound) {
+        alert(`Project Name: ${projects[index].name}\nProject Desccription: ${projects[index].desc}`)
+    }
+    else{
+        searchValue.value = '';
+        searchValue.setAttribute('placeholder', 'Try again...')
+    }
 }
+
+function deleteProject(){
+    const searchValue = document.getElementById("deleteInput");
+    let index = 0;
+    isFound = false;
+    for (let i = 0; i < projects.length; i++) {
+        const element = projects[i];
+        
+        if (String(element.name) == String(searchValue.value)) {
+            index = i;  
+            isFound = true;
+            break;
+        }
+    }
+    if (isFound) {
+        for (let i = 0; i < projects.length; i++) {
+            for (let j = i + 1; j < projects.length; j++) {
+                let temp = projects[j];
+                projects[j] = projects[i];
+                projects[i] = temp;                           
+            }            
+        }
+        projects.pop();
+
+        let block = document.getElementById("tbClear");
+        block.innerHTML = "";
+        localStorage.clear();
+        localStorage.setItem("row", JSON.stringify(projects));
+
+        document.location.reload();
+        alert(`successfully deleted`)
+    }
+    else{
+        alert(`not found`);
+    }
+}
+
+ var input = document.getElementById("searchInput");
+ input.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      document.getElementById("searchBtn").click();
+    }
+});
+var input = document.getElementById("deleteInput");
+input.addEventListener("keypress", function(event) {
+   // If the user presses the "Enter" key on the keyboard
+   if (event.key === "Enter") {
+     // Cancel the default action, if needed
+     event.preventDefault();
+     // Trigger the button element with a click
+     document.getElementById("removeBtn").click();
+   }
+});
+
