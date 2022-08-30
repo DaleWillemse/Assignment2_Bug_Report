@@ -20,6 +20,7 @@ const createProjectElement = ({name, desc}) => {
     projectName.classList.add("projHead");
     const projectDesc = document.createElement("p");
     projectDesc.classList.add("projDesc");
+
     const ticketBtn = document.createElement("button");
     ticketBtn.classList.add("ticketBtn");
     ticketBtn.style.width = "3cm";
@@ -28,12 +29,22 @@ const createProjectElement = ({name, desc}) => {
     ticketBtn.innerText = "View Tickets";
     ticketBtn.style.backgroundColor = "lightblue";
 
-    projectName.innerText = `Project Name: ` + name;
+//added remove button instead of remove selector
+    const removeBtn = document.createElement("button");
+    removeBtn.classList.add("removeBtn");
+    removeBtn.style.width = "65px";
+    removeBtn.style.borderRadius = "5px";
+    removeBtn.style.border = "1px solid";
+    removeBtn.innerText = "Delete!";
+    removeBtn.style.backgroundColor = "red";
+    //removeBtn.addEventListener("click", myScript);
+
+    projectName.innerText = `Project Name: ${name}` ;
     projectDesc.innerHTML = `Project Description: \n` + desc;
 
-    projectDiv.append(projectName, projectDesc, ticketBtn);
+    projectDiv.append(projectName, projectDesc, ticketBtn, removeBtn);
     projectContainer.appendChild(projectDiv);
-    
+
     projectContainer.style.display = projects.length === 0 ? "none" : "";
 };
 
@@ -54,3 +65,10 @@ projectForm.onsubmit = e => {
     nameInput.value = "";
     descInput.value = "";
 };
+
+//my function for deleting (still working on it)
+
+function deleteFunction(){
+  document.getElementByClassName("removeBtn");
+  localStorage.remove();
+}
