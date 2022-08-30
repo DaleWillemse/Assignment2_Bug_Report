@@ -210,7 +210,7 @@ function onComplete(e) {
     const index = Tickets.findIndex(Ticket => Ticket.TicketNumber == ticketNumber);
     Tickets[index].TicketStatus = "Completed";
     localStorage.setItem("Tickets", JSON.stringify(Tickets));
-    // 
+    location.reload();
   }
 }
 
