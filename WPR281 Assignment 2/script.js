@@ -36,7 +36,7 @@ const inputDateETA = TicketForm["TicketDateETACompleted"];
 
 const Tickets = JSON.parse(localStorage.getItem("Tickets")) || [];
 
-const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted) => {
+const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted) => {
   Tickets.push({
     TicketNumber,
     TicketTitle,
@@ -45,7 +45,8 @@ const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, T
     TicketType,
     TicketStatus,
     TicketDateIssued,
-    TicketDateETACompleted
+    TicketDateETACompleted,
+    TicketDateCompleted
 
   });
   localStorage.setItem("Tickets", JSON.stringify(Tickets));
@@ -53,7 +54,7 @@ const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, T
   return { TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted };
 };
 
-const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted }) => {
+const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted }) => {
 
   //create the elements
   const TicketElement = document.createElement("div");
@@ -104,8 +105,8 @@ const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDe
   tbDateCreated.classList.add('btnTitles');
 
   const tbDateCompleted = document.createElement('div');
+  tbDateCompleted.innerHTML = TicketDateCompleted;
   tbDateCompleted.classList.add('btnTitles');
-  tbDateCompleted.id = `${TicketNumber}`;
 
   const deleteBtn = document.createElement('button');
   deleteBtn.addEventListener('click', deleteTicket);
@@ -161,6 +162,7 @@ TicketForm.onsubmit = (e) => {
     inputStatus.value,
     dateIssued,
     inputDateETA.value,
+    dateCompleted = "Not Completed"
   )
 
   CreateTicketElement(newTicket);
@@ -209,6 +211,7 @@ function onComplete(e) {
     const ticketNumber = ticket.id;
     const index = Tickets.findIndex(Ticket => Ticket.TicketNumber == ticketNumber);
     Tickets[index].TicketStatus = "Completed";
+    Tickets[index].TicketDateCompleted = String(today);
     localStorage.setItem("Tickets", JSON.stringify(Tickets));
     location.reload();
   }
@@ -226,12 +229,27 @@ function onEdit(e) {
   inputType.value = selectedTicket.TicketType;
   dateIssued.value = selectedTicket.TicketDateIssued;
   inputDateETA.value = selectedTicket.TicketDateETACompleted;
-  inputStatus.value = selectedTicket.TicketStatus;
+  inputStatus.value = "Low";
   openTicket();
   //remove the old ticket from the array and local storage.
   Tickets.splice(index, 1);
   localStorage.setItem("Tickets", JSON.stringify(Tickets));
-  ticket.remove();
+  if (confirm("Confirm you want to edit this ticket?")) {
+    const newTicket = addTicket(
+      ticketNumber = Tickets.length + 1,
+      inputTitle.value,
+      inputAuthor.value,
+      inputDescription.value,
+      inputType.value,
+      inputStatus.value,
+      dateIssued.value,
+      inputDateETA.value,
+      dateCompleted = "Not Completed"
+    )
+    Tickets.push(newTicket);
+    localStorage.setItem("Tickets", JSON.stringify(Tickets));
+    location.reload();
+  }
 }
 
 // Search function.
