@@ -4,7 +4,7 @@ onsubmit = function () {
     var password = document.getElementById("password").value;
     var username = document.getElementById("username").value;
     if (password == "admin" && username == "admin") {
-        document.getElementById("loginForm").action = "TicketDash.html"; // CHANGE TO MAIN PAGE
+        document.getElementById("loginForm").action = ""; // CHANGE TO MAIN PAGE
         alert("Welcome to the website");
     }
     else {
