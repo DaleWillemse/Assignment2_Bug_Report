@@ -1,5 +1,15 @@
+:root{
+   --dark: #374151;
+   --darker: #1F2937;
+   --darkest: #111827;
+   --gray: #6B7280;
+   --light: #EEE;
+   --pink: #EC4899;
+   --purple: #8B5Cf6;
+   --blue: #4438ee;
+}
 html {
-   background-color: #238c65;
+   background: var(--dark);
 }
 
 hr {
@@ -41,7 +51,8 @@ hr {
 .dash {
    border-radius: 3px;
    margin: 5px;
-   background-color: #289c71;
+   background: var(--darker);
+
 }
 
 .Ticket {
@@ -62,6 +73,7 @@ hr {
 
 .ticketTitle {
    margin-left: 10px;
+   color: var(--light);
 }
 
 .btnTitles {
@@ -69,15 +81,16 @@ hr {
 }
 
 #highPriority {
-   background-color: red;
+   
+   background-image: linear-gradient(to right, rgb(255, 0 ,0, 0.5),rgb(255, 119, 0,0.7));
 }
 
 #mediumPriority {
-   background-color: orange;
+   background-image: linear-gradient(to right, rgb(255, 119, 0,0.7),rgb(255, 183, 0,0.7));
 }
 
 #lowPriority {
-   background-color: yellow;
+   background-image: linear-gradient(to right, rgb(255, 183, 0,0.7),rgb(216, 216, 2,0.7));
 }
 
 #completedPriority{
@@ -106,10 +119,12 @@ hr {
 }
 
 #search {
-   width: 88%;
-   padding: 5px;
+   width: 90%;
+   padding: 6px;
    border-radius: 3px;
    border-style: none;
+   background: var(--light);
+    
 }
 
 #returnBtn {
@@ -129,12 +144,13 @@ hr {
    padding: 0;
    border: none;
    z-index: 9;
+   color: white;
 }
 
 .ticketButton :hover {
    color: white;
    cursor: pointer;
-   background-color: #016943;
+   background:var(--darkest);
 }
 
 .button2 {
@@ -142,11 +158,14 @@ hr {
    height: 80px;
    width: 120px;
    padding: 4px 4px;
-   background: #238c65;
    border: none;
    border-radius: 3px;
    font-size: 16px;
+   font-weight: 700;
    cursor: pointer;
+   background-image: linear-gradient(to right, var(--pink), var(--blue));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
 }
 
 .button2_text {
@@ -158,7 +177,9 @@ hr {
 }
 
 .button2:hover {
-   background: #016943;
+   background-image: linear-gradient(to right, var(--blue), var(--purple));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
 }
 
 
@@ -179,7 +200,7 @@ hr {
 .form-container {
    width: 450px;
    padding: 10px;
-   background-color: white;
+   background:var(--dark);
 }
 
 /* Full-width input fields */
@@ -187,14 +208,14 @@ hr {
    width: 95%;
    padding: 11px;
    border: none;
-   background: #f1f1f1;
+   background: var(--darker);
 }
 
 .form-container select {
    width: 100%;
    padding: 11px;
    border: none;
-   background: #f1f1f1;
+   background: var(--darker);
 }
 
 /* When the inputs get focus, do something */
@@ -234,9 +255,14 @@ hr {
    display: flex;
    flex-direction: column;
    gap: 0.5rem;
-
+   
 }
 
 .search-wrapper>input {
    font-size: 0.8rem;
+   font: var(--light);
+}
+
+.TicketContainer{
+   color: var(--light);
 }
