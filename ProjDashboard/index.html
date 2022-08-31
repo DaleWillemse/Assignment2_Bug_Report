@@ -32,6 +32,7 @@
         }
         .navbar{
             display: inline-block;
+            height: 100vw;
         }
         button>img{
             height: 1cm;
@@ -118,6 +119,23 @@
         #searchLi2{            
             display: none;
         }
+        #back{
+            border: solid 2px black;
+            width: 10rem;
+        }
+        #back:hover{
+            background-color: darkgrey;
+        }
+        #btnBack{
+            text-align: center;
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+        a:hover{            
+            color: aliceblue;
+        }
         </style>
 </head>
 <body>
@@ -137,12 +155,15 @@
                     <li class="list-group-item" id="searchLi"><input type="search" name="search" id="searchInput" placeholder="Type Project Name..."><button onclick="searchProjectsFunction()" id="searchBtn">Search</button></li>
                     <li class="list-group-item" id="searchLi2"><input type="search" name="search2" id="deleteInput" placeholder="Type Project Name..."><button onclick="deleteProject()" id="removeBtn">Remove</button></li>
                 </ul>
+                <div id="btnBack">
+                    <button id="back" type="button" class="btn btn-light"><a href="/WPR281 Assignment 2/Login.html">Return to Login</a></button>
+                </div>
             </nav>
             </section>
 
 
             <div class="container" id="projects">
-                <div class="row g-3 row-cols-3" id="tbClear">
+                <div class="row g-1 row-cols-lg-3  row-cols-s-1" id="tbClear">
                 </div>
             </div>
         </section>
