@@ -12,6 +12,10 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <style>
+        body{
+          background-color: #404040;
+          color: white;
+        }
         .list-group{
             border: none;
         }
@@ -20,29 +24,57 @@
 
         }
         .header{
-            text-align: center;
-            background-color: blanchedalmond;
-            vertical-align: middle;
+
         }
-        h1{
-            display: inline-block;
-            margin-left: 5vw;
-            font-size: 60px;
-            vertical-align: middle;
+
+        #image{
+          width: 60px;
+          background-color: #212121;
+          position:absolute;
+          top:35px;
+          left:580px;
+        }
+        .ProjDash{
+          text-align: center;
+          background-color: #212121;
+          vertical-align: middle;
+          border-style: solid;
+          border-radius: 20px;
+          margin: 20px 550px;
+          min-width: 550px;
+          max-height: 100px;
+          padding: 20px 0;
         }
         .navbar{
             display: inline-block;
-            height: 100vw;
+            border-style: solid;
+            padding: 200px 0;
+            border-radius: 20px;
+            margin-left: 10px;
+            background-color: #212121;
         }
         button>img{
-            height: 1cm;
+            height: 1.37cm;
+            padding: 10px;
             float: left;
+            border-style: solid;
+            border-color: black;
+            background-color: white;
         }
+
         h6{
+
             color: black;
             vertical-align: middle;
             font-size: 22px;
-            padding-top: 3%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-style: solid;
+            background-color: grey;
+
+        }
+        h5{
+          color: black;
         }
         fieldset>li{
             list-style: none;
@@ -51,7 +83,20 @@
         .modal-body,.modal-footer{
             margin: auto;
         }
+        .model-content{
+          background-color: #404040;
+        }
+
+        .model-open{
+          background-color: none;
+        }
+
+        .model-header{
+          color: black;
+          background-color: #404040;
+        }
         #input1, #input2{
+            color: black;
             border: none;
             border-bottom: solid 2px black;
             width: 10cm;
@@ -64,6 +109,9 @@
         .modal-footer>button{
             width: auto;
         }
+        .projName{
+          color: black;
+        }
         #aside{
             display: inline-block;
             width: auto;
@@ -71,9 +119,14 @@
         }
         #projects{
             width: 100%;
-            padding: 1em;
-            border: 2px solid #ccdfe8;
-            background-color: #ccdfe8;
+            padding: 2em;
+            border-style: solid;
+            background-color: #454d3d;
+            border-radius: 20px;
+            border-color: white;
+            margin: 0 20px 0 20px;
+            color: black;
+
         }
         .content{
             display: grid;
@@ -113,36 +166,82 @@
             background-color: blue;
             color: bisque;
         }
-        #searchLi{            
+        #searchLi{
             display: none;
         }
-        #searchLi2{            
+        #searchLi2{
             display: none;
         }
-        #back{
-            border: solid 2px black;
-            width: 10rem;
+
+        .list-group-item{
+          margin: 20px 5px;
+          background-color: #212121;
+          border: solid;
+          border-color: #212121;
+
         }
-        #back:hover{
-            background-color: darkgrey;
+        .list-group{
+          background-color: #212121;
         }
+
+        #btnNew, #btnSearch, #btnRemove, #back{
+          padding-top: 15px;
+        }
+
+
+        #tbClear{
+          background-color: #90acb0;
+          border-style: solid;
+          border-radius: 20px;
+        }
+
+        .col{
+          background-color: white;
+          border-radius: 10px;
+          min-width: 320px;
+          max-width: 320px;
+        }
+
+        /*div*/
         #btnBack{
-            text-align: center;
+          margin-top: 75px;
+          margin-left: 40px;
         }
-        a{
-            color: black;
-            text-decoration: none;
+
+        /*button*/
+        #back{
+
+          color: black;
+          background-color: #90acb0;
+          max-width: 200px;
+          min-width: 200px;
+          margin-left: 10px;
+          border-color: black;
+
         }
-        a:hover{            
-            color: aliceblue;
+        h3{
+          font-size: 18px;
+          color: black;
+          background-color: grey;
+          border: solid black;
+          padding-bottom: 7px;
+          padding-top: 5px;
         }
+        #backArrow{
+          width: 40px;
+          float: left;
+          background-color: white;
+          padding: 5px;
+          border: solid black;
+        }
+
         </style>
 </head>
 <body>
     <section id="wrapper">
         <section class="header">
-            <img src="images/img.png" alt="_bug_tracker_logo">
-            <h1>Project Dashboard</h1>
+            <img id="image" src="images/bug-img.png" alt="_bug_tracker_logo">
+            <h1 class="ProjDash">Project Dashboard</h1>
         </section>
 
         <section class="content">
@@ -156,7 +255,7 @@
                     <li class="list-group-item" id="searchLi2"><input type="search" name="search2" id="deleteInput" placeholder="Type Project Name..."><button onclick="deleteProject()" id="removeBtn">Remove</button></li>
                 </ul>
                 <div id="btnBack">
-                    <button id="back" type="button" class="btn btn-light"><a href="Login.html">Return to Login</a></button>
+                    <button id="back" type="button" class="btn btn-light"><a href="Login.html"><img id="backArrow" src="Images/back-arrow.png" alt="mag_img"><h3>Return to Login</h3></a></button>
                 </div>
             </nav>
             </section>
@@ -191,7 +290,7 @@
               </div>
             </div>
           </div>
-        
+
     </section>
 </body>
 <script src="Javascript/ProjectDashboard.js"></script>
