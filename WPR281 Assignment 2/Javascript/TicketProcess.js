@@ -262,7 +262,7 @@ function searchTicket() {
   if (search != "") {
     for (let i = 0; i < Tickets.length; i++) {
       //if the ticket title matches the search, display it.
-      if (Tickets[i].TicketTitle.toLowerCase() == search.toLowerCase()) {
+      if (Tickets[i].TicketTitle.toLowerCase() == search.toLowerCase() || Tickets[i].TicketAuthor.toLowerCase() == search.toLowerCase() || Tickets[i].TicketStatus.toLowerCase() == search.toLowerCase() || Tickets[i].TicketType.toLowerCase() == search.toLowerCase()) {
         document.getElementById(Tickets[i].TicketNumber).style.display = "block";
         returnBtn.style.display = "block";
       }
