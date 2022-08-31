@@ -36,8 +36,9 @@ const inputDateETA = TicketForm["TicketDateETACompleted"];
 
 const Tickets = JSON.parse(localStorage.getItem("Tickets")) || [];
 
-const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted) => {
+const addTicket = (ProjectNumber, TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted) => {
   Tickets.push({
+    ProjectNumber,
     TicketNumber,
     TicketTitle,
     TicketAuthor,
@@ -51,101 +52,104 @@ const addTicket = (TicketNumber, TicketTitle, TicketAuthor, TicketDescription, T
   });
   localStorage.setItem("Tickets", JSON.stringify(Tickets));
 
-  return { TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted };
+  return { ProjectNumber, TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted };
 };
 
-const CreateTicketElement = ({ TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted }) => {
+const CreateTicketElement = ({ ProjectNumber, TicketNumber, TicketTitle, TicketAuthor, TicketDescription, TicketType, TicketStatus, TicketDateIssued, TicketDateETACompleted, TicketDateCompleted }) => {
 
-  //create the elements
-  const TicketElement = document.createElement("div");
-  TicketElement.classList.add("TicketElement");
-  TicketElement.id = `${TicketNumber}`;
-  const tTicketDiv = document.createElement('div');
-  tTicketDiv.classList.add('ticket');
-  const tTicketTitle = document.createElement('h3');
-  const tTicketAuthor = document.createElement('p');
-  const tTicketDescription = document.createElement('p');
-  const tTicketType = document.createElement('p');
-  const tTicketStatus = document.createElement('p');
-  const tTicketDateETACompleted = document.createElement('p');
+  // create the ticket if the ProjectNumber matches the current page.
+  if (document.location.href.split('/').pop() == ProjectNumber) {
+    //create the elements
+    const TicketElement = document.createElement("div");
+    TicketElement.classList.add("TicketElement");
+    TicketElement.id = `${TicketNumber}`;
+    const tTicketDiv = document.createElement('div');
+    tTicketDiv.classList.add('ticket');
+    const tTicketTitle = document.createElement('h3');
+    const tTicketAuthor = document.createElement('p');
+    const tTicketDescription = document.createElement('p');
+    const tTicketType = document.createElement('p');
+    const tTicketStatus = document.createElement('p');
+    const tTicketDateETACompleted = document.createElement('p');
 
-  // Ticket button to open ticket elements
-  const tbTicketButton = document.createElement('button');
-  tbTicketButton.classList.add('ticketButton');
-  if (TicketStatus == "High") {
-    tbTicketButton.id = "highPriority";
+    // Ticket button to open ticket elements
+    const tbTicketButton = document.createElement('button');
+    tbTicketButton.classList.add('ticketButton');
+    if (TicketStatus == "High") {
+      tbTicketButton.id = "highPriority";
+    }
+    else if (TicketStatus == "Medium") {
+      tbTicketButton.id = "mediumPriority";
+    }
+    else if (TicketStatus == "Low") {
+      tbTicketButton.id = "lowPriority";
+    }
+    else if (TicketStatus == "Completed") {
+      tbTicketButton.id = "completedPriority";
+    }
+
+    const tbTicket = document.createElement('div');
+    tbTicket.classList.add('Ticket');
+
+    const tbPriority = document.createElement('div');
+    tbPriority.innerHTML = TicketStatus;
+    tbPriority.classList.add('btnTitles');
+
+    const tbTicketHeading = document.createElement('div');
+    tbTicketHeading.innerHTML = TicketTitle;
+    tbTicketHeading.classList.add('btnTitles');
+
+    const tbAuthor = document.createElement('div');
+    tbAuthor.innerHTML = TicketAuthor;
+    tbAuthor.classList.add('btnTitles');
+
+    const tbDateCreated = document.createElement('div');
+    tbDateCreated.innerHTML = TicketDateIssued;
+    tbDateCreated.classList.add('btnTitles');
+
+    const tbDateCompleted = document.createElement('div');
+    tbDateCompleted.innerHTML = TicketDateCompleted;
+    tbDateCompleted.classList.add('btnTitles');
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.addEventListener('click', deleteTicket);
+    deleteBtn.classList.add('deleteBtn');
+    deleteBtn.innerHTML = "<img src='images/trash_can.png' class = 'noPointer' alt='trash' width='20' height='20'>";
+
+    const editBtn = document.createElement('button');
+    editBtn.addEventListener('click', onEdit)
+    editBtn.classList.add('editBtn');
+    editBtn.innerHTML = "<img src='images/edit.png' alt='edit' class = 'noPointer' width='20' height='20'>";
+
+    const tickMark = document.createElement('button');
+    tickMark.addEventListener('click', onComplete)
+    tickMark.classList.add('tickMark');
+    tickMark.innerHTML = "<img src='images/tick.png' alt='tick' class = 'noPointer' width='20' height='20'>";
+
+    tbTicket.appendChild(tbPriority);
+    tbTicket.appendChild(tbTicketHeading);
+    tbTicket.appendChild(tbAuthor);
+    tbTicket.appendChild(tbDateCreated);
+    tbTicket.appendChild(tbDateCompleted);
+    tbTicketButton.appendChild(tbTicket);
+
+    //Fill the content
+    tTicketTitle.innerText = "Title: " + TicketTitle;
+    tTicketAuthor.innerText = "Author: " + TicketAuthor;
+    tTicketDescription.innerText = "Description: " + TicketDescription;
+    tTicketType.innerText = "Type: " + TicketType;
+    tTicketStatus.innerText = "Priority: " + TicketStatus;
+    tTicketDateETACompleted.innerText = "Estimated Date of Completion: " + TicketDateETACompleted;
+
+    //Add to the Domain
+    //The order it is appended is the order it will be displayed in.
+    tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateETACompleted, editBtn);
+    TicketElement.appendChild(deleteBtn);
+    TicketElement.appendChild(tickMark);
+    TicketElement.appendChild(tbTicketButton);
+    TicketElement.appendChild(tTicketDiv);
+    TicketContainer.appendChild(TicketElement);
   }
-  else if (TicketStatus == "Medium") {
-    tbTicketButton.id = "mediumPriority";
-  }
-  else if (TicketStatus == "Low") {
-    tbTicketButton.id = "lowPriority";
-  }
-  else if (TicketStatus == "Completed") {
-    tbTicketButton.id = "completedPriority";
-  }
-
-  const tbTicket = document.createElement('div');
-  tbTicket.classList.add('Ticket');
-
-  const tbPriority = document.createElement('div');
-  tbPriority.innerHTML = TicketStatus;
-  tbPriority.classList.add('btnTitles');
-
-  const tbTicketHeading = document.createElement('div');
-  tbTicketHeading.innerHTML = TicketTitle;
-  tbTicketHeading.classList.add('btnTitles');
-
-  const tbAuthor = document.createElement('div');
-  tbAuthor.innerHTML = TicketAuthor;
-  tbAuthor.classList.add('btnTitles');
-
-  const tbDateCreated = document.createElement('div');
-  tbDateCreated.innerHTML = TicketDateIssued;
-  tbDateCreated.classList.add('btnTitles');
-
-  const tbDateCompleted = document.createElement('div');
-  tbDateCompleted.innerHTML = TicketDateCompleted;
-  tbDateCompleted.classList.add('btnTitles');
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.addEventListener('click', deleteTicket);
-  deleteBtn.classList.add('deleteBtn');
-  deleteBtn.innerHTML = "<img src='images/trash_can.png' class = 'noPointer' alt='trash' width='20' height='20'>";
-
-  const editBtn = document.createElement('button');
-  editBtn.addEventListener('click', onEdit)
-  editBtn.classList.add('editBtn');
-  editBtn.innerHTML = "<img src='images/edit.png' alt='edit' class = 'noPointer' width='20' height='20'>";
-
-  const tickMark = document.createElement('button');
-  tickMark.addEventListener('click', onComplete)
-  tickMark.classList.add('tickMark');
-  tickMark.innerHTML = "<img src='images/tick.png' alt='tick' class = 'noPointer' width='20' height='20'>";
-
-  tbTicket.appendChild(tbPriority);
-  tbTicket.appendChild(tbTicketHeading);
-  tbTicket.appendChild(tbAuthor);
-  tbTicket.appendChild(tbDateCreated);
-  tbTicket.appendChild(tbDateCompleted);
-  tbTicketButton.appendChild(tbTicket);
-
-  //Fill the content
-  tTicketTitle.innerText = "Title: " + TicketTitle;
-  tTicketAuthor.innerText = "Author: " + TicketAuthor;
-  tTicketDescription.innerText = "Description: " + TicketDescription;
-  tTicketType.innerText = "Type: " + TicketType;
-  tTicketStatus.innerText = "Priority: " + TicketStatus;
-  tTicketDateETACompleted.innerText = "Estimated Date of Completion: " + TicketDateETACompleted;
-
-  //Add to the Domain
-  //The order it is appended is the order it will be displayed in.
-  tTicketDiv.append(tTicketTitle, tTicketAuthor, tTicketDescription, tTicketType, tTicketStatus, tTicketDateETACompleted, editBtn);
-  TicketElement.appendChild(deleteBtn);
-  TicketElement.appendChild(tickMark);
-  TicketElement.appendChild(tbTicketButton);
-  TicketElement.appendChild(tTicketDiv);
-  TicketContainer.appendChild(TicketElement);
 }
 
 Tickets.forEach(CreateTicketElement);
@@ -154,6 +158,7 @@ TicketForm.onsubmit = (e) => {
   e.preventDefault();
   location.reload();
   const newTicket = addTicket(
+    ProjectNumber = document.location.href.split('/').pop(),
     ticketNumber = Tickets.length + 1,
     inputTitle.value,
     inputAuthor.value,
@@ -240,6 +245,8 @@ function onEdit(e) {
   });
 
   const newTicket = addTicket(
+    // query string for project number
+    ProjectNumber = document.location.href.split(':').pop(),
     ticketNumber = Tickets.length + 1,
     inputTitle.value,
     inputAuthor.value,
