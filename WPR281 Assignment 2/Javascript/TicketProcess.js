@@ -8,14 +8,6 @@ function closeTicket() {
   document.getElementById("innerBody").style.opacity = "1"
 }
 
-function clearStorage() {
-  //confirm that the user wants to clear the storage
-  if (confirm("Are you sure you want to clear the storage?")) {
-    localStorage.clear();
-    location.reload();
-  }
-}
-
 // Getting current date.
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
