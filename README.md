@@ -1,7 +1,7 @@
 <h2>Group project for web programming 281</h2>
 <p>
 Getting more technical with JavaScript. 
-Made use of local storage to safe tickets created on webpage.
+Made use of local storage to save tickets created on webpage.
 </p>
 
 <h3>Group members :  </h3>
