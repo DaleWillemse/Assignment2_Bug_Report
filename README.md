@@ -9,6 +9,7 @@ Made use of local storage to save tickets created on a webpage.
   <li> Wian Meintjes </li>  
   <li>Ammaar Peerbhai </li> 
   <li>Devlyn Kempen</li>
+  <li>Dale Willemse</li>
 </ul>
 <br>
 
